@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Bungee, Nunito_Sans } from 'next/font/google';
 import type { ReactNode } from 'react';
 
+import { GoogleAnalytics } from '@/components/analytics/google-analytics';
 import { SITE } from '@/lib/site';
 import { THEME_BOOT_SCRIPT } from '@/lib/theme';
 
@@ -40,6 +41,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang={SITE.locale} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }} />
+        <GoogleAnalytics
+          measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
+        />
       </head>
       <body className={`${displayFont.variable} ${bodyFont.variable}`}>
         {children}
