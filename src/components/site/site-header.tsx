@@ -16,7 +16,7 @@ export function SiteHeader() {
           <span aria-hidden="true" className="site-brand__mark">
             <span className="site-brand__mark-fallback">K</span>
             <Image
-              alt=""
+              alt="KOTAMON logo"
               className="site-brand__mark-image"
               height="38"
               src="/brand/icon-192.png"

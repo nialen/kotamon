@@ -39,11 +39,31 @@ it('links the save protection notice to the preservation-first guide', () => {
   );
 });
 
-it('publishes distinct homepage metadata and supported WebSite JSON-LD', () => {
+it('publishes a descriptive homepage title for the primary search tasks', () => {
+  const homepageTitle = (metadata.title as { absolute: string }).absolute;
+
+  expect(homepageTitle).toContain('KOTAMON Wiki & Guide');
+  expect(homepageTitle).toContain('Cards');
+  expect(homepageTitle).toContain('Achievements');
+  expect(homepageTitle.length).toBeGreaterThanOrEqual(40);
+  expect(homepageTitle.length).toBeLessThanOrEqual(60);
+  expect(metadata.openGraph).toMatchObject({ title: homepageTitle });
+});
+
+it('publishes a useful homepage description without snippet stuffing', () => {
+  const homepageDescription = metadata.description as string;
+
+  expect(homepageDescription).toContain('KOTAMON');
+  expect(homepageDescription).toContain('collectibles');
+  expect(homepageDescription).toContain('troubleshooting');
+  expect(homepageDescription.length).toBeGreaterThanOrEqual(140);
+  expect(homepageDescription.length).toBeLessThanOrEqual(160);
+});
+
+it('publishes canonical homepage metadata and supported WebSite JSON-LD', () => {
   const { container } = render(<HomePage />);
   const jsonLd = container.querySelector('script[type="application/ld+json"]');
 
-  expect(metadata.title).toEqual({ absolute: SITE.name });
   expect(metadata.alternates).toEqual({
     canonical: `${SITE.url}/en`,
     languages: {

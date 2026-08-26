@@ -9,11 +9,12 @@ import { getPublicEntries } from '@/content/registry';
 import { SITE } from '@/lib/site';
 
 const homepageUrl = `${SITE.url}/${SITE.locale}`;
+const homepageTitle = 'KOTAMON Wiki & Guide: Cards, Achievements & More';
 const homepageDescription =
-  'Gameplay, cards, collectibles, achievements, and careful troubleshooting for KOTAMON players.';
+  'Explore KOTAMON cards, achievements, collectibles, gameplay tips, secret locations, and troubleshooting in this independent fan-made wiki and guide.';
 
 export const metadata: Metadata = {
-  title: { absolute: SITE.name },
+  title: { absolute: homepageTitle },
   description: homepageDescription,
   alternates: {
     canonical: homepageUrl,
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: homepageUrl,
-    title: SITE.name,
+    title: homepageTitle,
     description: homepageDescription,
     siteName: SITE.name,
     locale: 'en_US',

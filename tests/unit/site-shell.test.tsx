@@ -60,7 +60,7 @@ it('renders a compact branded header with primary navigation', () => {
   expect(brandImage).toHaveAttribute('src', '/brand/icon-192.png');
   expect(brandImage).toHaveAttribute('width', '38');
   expect(brandImage).toHaveAttribute('height', '38');
-  expect(brandImage).toHaveAttribute('alt', '');
+  expect(brandImage).toHaveAttribute('alt', 'KOTAMON logo');
   expect(screen.getByRole('navigation', { name: 'Primary navigation' })).toBeVisible();
 });
 
