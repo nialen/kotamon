@@ -16,12 +16,12 @@
 - Root 308 redirect to `/en`
 - `/en` and `robots.txt`: HTTP 200
 - `sitemap.xml`: HTTP 200 and canonical `https://kotamon.com` URLs
-
-## Pending on custom domain
-
-- `www` DNS verification, certificate, and 308 redirect
+- `www.kotamon.com`: HTTP 308 to `https://kotamon.com/`
 - All 13 sitemap routes on the custom host: HTTP 200
 - Negative route `/en/mods`: HTTP 404
-- Mobile/desktop visual smoke test on public custom host
-- Runtime/log observation after DNS activation
-- GA4 script presence and real-time event observation after measurement ID activation
+- GA4 loader and config for `G-0N7JBKRYTE`: present in production HTML
+
+## Pending observation
+
+- First GA4 real-time event/data-processing observation
+- Google URL Inspection/indexing observations (sitemap success does not prove indexing)

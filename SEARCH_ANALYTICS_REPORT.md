@@ -10,9 +10,10 @@
 - Reporting time zone: China Time (GMT+08:00); currency: USD
 - Business category/size: Games; small (1-10 employees)
 - Web data stream: `kotamon.com`, URL `https://kotamon.com`, stream ID `15501944042`
-- GA4 measurement ID: pending retrieval from the stream details panel
-- Website integration: implemented behind `NEXT_PUBLIC_GA_MEASUREMENT_ID`; production activation pending the `G-...` value
-- Production analytics observations: not yet available
+- GA4 measurement ID: `G-0N7JBKRYTE`
+- Website integration: enabled through `NEXT_PUBLIC_GA_MEASUREMENT_ID` for Vercel Production and Preview
+- Production tag verification: the public HTML contains both the Google tag loader and `gtag('config', 'G-0N7JBKRYTE')`
+- Production analytics observations: first real-time/data-processing observation is pending; tag verification is not proof that GA4 has processed an event
 
 Sitemap gate: verify the canonical host, public HTTP availability/status, and crawlability of every intended public URL before submission.
 
