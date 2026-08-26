@@ -6,7 +6,7 @@
 - Application commit: `837fa85b45b58e2ce207a8d20dc99ae82ad57ccb`
 - Vercel team: `angelicachavira-1451s-projects`
 - Vercel project: `kotamon`
-- Production deployment URL: https://kotamon-q48tl4fau-angelicachavira-1451s-projects.vercel.app
+- Analytics application deployment URL: https://kotamon-q48tl4fau-angelicachavira-1451s-projects.vercel.app
 - Vercel project URL: https://kotamon.vercel.app
 - Canonical production URL: https://kotamon.com
 - Build result: 20/20 routes generated
