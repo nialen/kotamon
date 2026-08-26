@@ -1,0 +1,83 @@
+---
+title: 'KOTAMON Figurine Locations: Route Checklist'
+description: 'Use a mixed collection route: check the six currently documented landmark pickups first, then continue normal trash-pile cycles for the random discoveries. The evidence does not support twelve fixed map points.'
+slug: collectibles/figurines
+category: Collectibles
+updatedAt: '2026-08-25'
+sourceStatus: multi-source
+draft: false
+locale: en
+priority: P1
+related:
+  - achievements
+  - guides/save-not-working
+sources:
+  - label: KOTAMON Figurine Locations
+    url: https://kotamondb.wiki/locations/figurines/
+    kind: multi-source
+  - label: KOTAMON Game Figurine Locations with Images
+    url: https://guidexon.com/kotamon-game-figurine-locations/
+    kind: multi-source
+  - label: Steam Global Achievements
+    url: https://steamcommunity.com/stats/4294490/achievements
+    kind: official
+  - label: Long-awaited mouse smoothing fixes and more
+    url: https://store.steampowered.com/news/app/4294490/view/1841579228671903
+    kind: official
+---
+
+**Spoiler warning:** The checklist below reveals the current collection pattern and the order in which to search. Keep it closed if you want to discover the figurines without route guidance.
+
+## What counts as a complete route
+
+Current guides agree on a mixed pattern: six checks are tied to documented landmarks, while the remaining discoveries come from trash piles. This means the collection is not twelve fixed map points, and it should not be treated as a twelve-pin coordinate map.
+
+The specific figurine identity at a landmark can differ between players. Track the total collected count, not an assumed identity-to-location pairing. Steam publishes milestones at 1, 5, 9, and 12 figurines.
+
+<LocationChecklist
+  title="Route-order checklist"
+  spoilerLabel="Show the figurine route checklist"
+  listLabel="Figurine route order"
+  items={[
+    {
+      name: 'Record your starting total',
+      route: 'Preparation',
+      description: 'Note the current figurine count before searching so a pickup or counter mismatch is easy to identify.',
+    },
+    {
+      name: 'Complete the fixed-landmark sweep',
+      route: 'Phase 1: six landmark checks',
+      description: 'Use the current visual references linked in Sources to verify the six documented landmark pickups in one pass. This text does not translate screenshot clues into unsupported coordinates.',
+      note: 'A landmark does not guarantee the same figurine identity for every player.',
+    },
+    {
+      name: 'Confirm the count after the sweep',
+      route: 'Checkpoint',
+      description: 'Check the collection total after the landmark pass. Steam milestones provide reliable progress checkpoints at 1, 5, 9, and 12.',
+    },
+    {
+      name: 'Return to normal trash-pile cycles',
+      route: 'Phase 2: random discoveries',
+      description: 'Open trash piles as part of the normal yard loop for the remaining figurine discoveries. Their exact piles are not fixed by the supplied evidence.',
+      note: 'Do not repeatedly search one claimed coordinate as though every figurine had a fixed spawn.',
+    },
+    {
+      name: 'Recheck after each discovery',
+      route: 'Progress control',
+      description: 'Verify that the total advances and let the 9 and 12 milestones confirm the final stretch.',
+    },
+    {
+      name: 'Preserve a good save if the total stalls',
+      route: 'Safety stop',
+      description: 'Keep the last good save untouched and use a separate manual save before testing a suspected counter problem.',
+    },
+  ]}
+/>
+
+## Patch-sensitive limits
+
+The August 22 developer update adjusted figurine appearance chances. That supports repeating normal trash-pile cycles, but it does not establish a fixed drop rate or a guaranteed number of piles per figurine.
+
+If a later update changes spawn behavior, compare the game date and current guide evidence before repeating the route. Do not use coordinate editors, save edits, or invented drop-rate formulas.
+
+For the cumulative unlock list, use the [achievement guide](/en/achievements). If collection progress or upgrades appear to roll back, stop and follow the [save troubleshooting guide](/en/guides/save-not-working).

@@ -1,0 +1,76 @@
+---
+title: 'KOTAMON Save Not Working: Safe Troubleshooting'
+description: 'Keep the last good save untouched and make a separate manual save before changing anything. Official fixes addressed several save issues, but later player reports mean missing upgrades still need careful diagnosis.'
+slug: guides/save-not-working
+category: Guides
+updatedAt: '2026-08-25'
+sourceStatus: multi-source
+draft: false
+locale: en
+priority: P0
+related:
+  - guides/gameplay
+  - guides/card-repair
+sources:
+  - label: Large-scale rebalancing, saves, achievements!
+    url: https://store.steampowered.com/news/app/4294490/view/1841579228668576
+    kind: official
+  - label: KOTAMON Save Not Working
+    url: https://kotamondb.wiki/guides/save-not-working/
+    kind: multi-source
+---
+
+## Preserve progress before any test
+
+Stop using the affected save as soon as you notice missing upgrades, an unexpected reset, or a load crash. Keep the last known good save untouched and create a separate manual save before trying a diagnostic step.
+
+Do not overwrite the only good slot, delete saves, or edit save data to test a theory. Verifying game files may check the installation, but the saved evidence does not show that it restores lost progress.
+
+## What the official August 21 update fixed
+
+The developer's August 21, 2026 update says it addressed several save and progression problems. The official notes include:
+
+- fixes for crashes connected to saving and loading;
+- autosaving when a new trash pile is opened;
+- fixes for several achievements;
+- an intentional demo-to-release migration rule.
+
+For demo migration, money and upgrades reset by design while the card collection remains. If that exact transition happened when moving from the demo to the full release, it is documented behavior rather than proof that the current save failed.
+
+## What later community reports still describe
+
+The maintained community issue summary records players reporting missing upgrades after the official fixes. These are current player reports, not a developer confirmation that every save issue remains or that one recovery method works for everyone.
+
+A repeated stat pattern reported by players is a symptom, not a normal cap, password, or recovery code. Do not enter or copy values into a save based on that report.
+
+## Safe diagnostic order
+
+1. Leave the last good save untouched.
+2. Create a separate manual save for testing.
+3. Confirm the game is updated through Steam before reproducing an issue already named in the August 21 notes.
+4. Decide whether the change matches the documented demo migration or affects a full-release save.
+5. On the test save only, note the upgrade values before and after one normal save and load cycle.
+6. Note whether opening a new trash pile produces the autosave behavior described by the official update.
+7. Stop if another load removes progress or crashes. Do not repeat the test on the good save.
+
+This sequence separates a known migration rule, an officially addressed bug, and a current player-reported symptom without assuming they have the same cause.
+
+## Information to include when escalating
+
+A useful report should include:
+
+- whether the save began in the demo or the full release;
+- the date the game was last updated;
+- the values or upgrades visible before and after loading;
+- the last normal action before the problem appeared;
+- whether a new trash pile had been opened;
+- whether the card collection remained;
+- whether the game crashed or loaded with changed progress.
+
+Share a reproducible description through the game's current community or developer support channel. Keep the preserved save untouched while waiting for official guidance, and do not claim a community workaround is an official fix.
+
+## Continue only from a verified state
+
+After one successful test load, compare the important progress again before continuing. If the values are still wrong, stop and retain both the untouched good save and the separate test save.
+
+For normal progression after the save is stable, use the [gameplay guide](/en/guides/gameplay). If the issue appeared while assembling a fragmented card, use the [card repair guide](/en/guides/card-repair) without overwriting the known good slot.

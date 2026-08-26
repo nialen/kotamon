@@ -1,0 +1,52 @@
+import { ArrowRight } from '@phosphor-icons/react/dist/ssr';
+import Image from 'next/image';
+import Link from 'next/link';
+
+import { SITE } from '@/lib/site';
+
+export function HomeHero() {
+  return (
+    <section aria-labelledby="home-title" className="shell-container">
+      <div className="grid min-h-[calc(100dvh-4.5rem)] grid-cols-1 items-center gap-8 py-8 md:grid-cols-12 md:gap-10 md:py-12">
+        <div className="md:col-span-5 md:pr-4">
+          <h1
+            className="max-w-[12ch] text-balance font-display text-[clamp(2.45rem,11vw,4.5rem)] leading-[0.98] tracking-[-0.045em] text-[var(--foreground-strong)] md:text-[clamp(3.3rem,5.1vw,5rem)]"
+            id="home-title"
+          >
+            {SITE.name}
+          </h1>
+          <p className="mt-6 max-w-[34rem] text-lg font-bold leading-relaxed text-[var(--muted-foreground)] md:text-xl">
+            {SITE.positioning}
+          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <Link
+              className="inline-flex min-h-12 items-center gap-2 whitespace-nowrap rounded-full border-2 border-[var(--border-strong)] bg-accent px-5 py-3 font-extrabold text-[var(--accent-foreground)] no-underline shadow-[3px_3px_0_var(--shadow-color)] hover:-translate-y-0.5 hover:shadow-[5px_5px_0_var(--shadow-color)] active:translate-y-px"
+              href="/en/guides/gameplay"
+            >
+              Start with gameplay
+              <ArrowRight aria-hidden="true" size={20} weight="bold" />
+            </Link>
+            <Link
+              className="inline-flex min-h-12 items-center whitespace-nowrap rounded-full border-2 border-[var(--border-strong)] bg-[var(--surface)] px-5 py-3 font-extrabold text-[var(--foreground-strong)] no-underline hover:-translate-y-0.5 hover:bg-[var(--surface-muted)] active:translate-y-px"
+              href="/en/cards"
+            >
+              Browse cards
+            </Link>
+          </div>
+        </div>
+
+        <figure className="m-0 overflow-hidden rounded-[var(--radius-surface)] border-2 border-[var(--border-strong)] bg-[var(--surface)] shadow-[8px_8px_0_var(--shadow-color)] md:col-span-7">
+          <Image
+            alt="Paper-cut collection binder with blank card slots and map markers"
+            className="block aspect-[3/2] h-auto w-full object-cover"
+            height={1024}
+            priority
+            sizes="(max-width: 767px) calc(100vw - 2rem), 58vw"
+            src="/images/home/collection-board.webp"
+            width={1536}
+          />
+        </figure>
+      </div>
+    </section>
+  );
+}

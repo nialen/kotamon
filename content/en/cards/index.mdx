@@ -1,0 +1,121 @@
+---
+title: 'KOTAMON Cards: Current List by Color Set'
+description: 'Check the current 40-card community list by blue, white, red, and purple set, plus Kotalion as a separate special card. Steam confirms the collection goals, while individual base-card names come from maintained community documentation.'
+slug: cards
+category: Cards
+updatedAt: '2026-08-25'
+sourceStatus: multi-source
+draft: false
+locale: en
+priority: P1
+related:
+  - guides/card-repair
+  - guides/foil-cards
+  - guides/cereal-boxes
+  - achievements
+sources:
+  - label: KOTAMON Steam store page
+    url: https://store.steampowered.com/app/4294490/KOTAMON/
+    kind: official
+  - label: Steam Global Achievements
+    url: https://steamcommunity.com/stats/4294490/achievements
+    kind: official
+  - label: KOTAMON All Cards List
+    url: https://kotamondb.wiki/cards/
+    kind: single-source
+---
+
+export const cardGroups = [
+  {
+    title: 'Blue set',
+    description:
+      'Steam confirms a full blue-set collection goal. The 10 individual names below are community-documented.',
+    entries: [
+      { name: 'Jellycat', status: 'Community name' },
+      { name: 'Kota the Diver', status: 'Community name' },
+      { name: 'Merkota', status: 'Community name' },
+      { name: 'Salty Sailor', status: 'Community name' },
+      { name: 'Koka_Taparen', status: 'Community name' },
+      { name: 'Koteko Kota', status: 'Community name' },
+      { name: 'Jack Kotrow', status: 'Community name' },
+      { name: 'Squirtoise', status: 'Community name' },
+      { name: 'Octois Kotoe', status: 'Community name' },
+      { name: 'Shy Kitty', status: 'Community name' },
+    ],
+  },
+  {
+    title: 'White set',
+    description:
+      'Steam confirms a full white-set collection goal. The 10 individual names below are community-documented.',
+    entries: [
+      { name: 'Easy Breeze', status: 'Community name' },
+      { name: 'Kotalyte', status: 'Community name' },
+      { name: 'Koti', status: 'Community name' },
+      { name: 'Pilot Kotowsky', status: 'Community name' },
+      { name: 'Chibikota', status: 'Community name' },
+      { name: 'Gina from the Lamp', status: 'Community name' },
+      { name: 'Archkota', status: 'Community name' },
+      { name: 'Kotvael', status: 'Community name' },
+      { name: 'Kotabird', status: 'Community name' },
+      { name: 'Kotaang', status: 'Community name' },
+    ],
+  },
+  {
+    title: 'Red set',
+    description:
+      'Steam confirms a full red-set collection goal. The 10 individual names below are community-documented.',
+    entries: [
+      { name: 'KMC', status: 'Community name' },
+      { name: 'Kotmonder', status: 'Community name' },
+      { name: 'Kotunyaa', status: 'Community name' },
+      { name: 'Smokey Kota', status: 'Community name' },
+      { name: 'Katlah', status: 'Community name' },
+      { name: 'Katzira, The Raging Flame', status: 'Community name' },
+      { name: 'Ryukota', status: 'Community name' },
+      { name: 'Hellkota', status: 'Community name' },
+      { name: 'Koterberus', status: 'Community name' },
+      { name: 'Iron Kotas', status: 'Community name' },
+    ],
+  },
+  {
+    title: 'Purple set',
+    description:
+      'Steam confirms a full purple-set collection goal. The 10 individual names below are community-documented.',
+    entries: [
+      { name: 'Koticia Addams', status: 'Community name' },
+      { name: 'Kotward Hookhands', status: 'Community name' },
+      { name: 'Namane Kisu', status: 'Community name' },
+      { name: 'Gothic Kotik', status: 'Community name' },
+      { name: 'MILFHunter K', status: 'Community name' },
+      { name: 'Atokard', status: 'Community name' },
+      { name: 'Kuroneko Omori', status: 'Community name' },
+      { name: 'Bloodcat', status: 'Community name' },
+      { name: 'Koteiji Olya', status: 'Community name' },
+      { name: 'Dio Kotando', status: 'Community name' },
+    ],
+  },
+  {
+    title: 'Separate special card',
+    description:
+      "Steam names Kotalion in the Get 'em All! achievement. The current community checklist records it separately from the four color sets.",
+    entries: [{ name: 'Kotalion', status: 'Officially named' }],
+  },
+];
+
+<aside className="direct-answer" role="note" aria-label="Current list warning"><div className="direct-answer__label">Current list</div><div>This is a dated community checklist reviewed on August 25, 2026, not a timeless official card catalog. The official store says there are dozens of unique cards, while Steam confirms four color-set goals and a separate Kotalion achievement. Updates may change the available cards.</div></aside>
+
+## How to read the evidence labels
+
+The color-set completion structure comes from Steam's public achievements. The 40 individual base-card names come from the maintained community checklist, so each is labeled `Community name`. Kotalion is the one card named directly by the public Steam achievement list.
+
+Exact HP, ATK, condition values, prices, and foil eligibility are intentionally omitted. The supplied official evidence does not publish a complete per-card stat catalog, and condition-dependent prices should not be treated as fixed card data.
+
+<section aria-label="Current documented card groups">
+  <CardGroups groups={cardGroups} />
+</section>
+
+## Collection boundaries
+
+Do not turn empty binder slots into invented cards. The reviewed community evidence supports 40 base cards across four color sets plus Kotalion as a separate special card. It does not establish additional obtainable special cards.
+
+Track foil progress separately from this base-card checklist. Steam publishes dedicated foil achievements, but the saved official sources do not provide a complete card-by-card foil list or a guaranteed acquisition rule. Use the [foil cards guide](/en/guides/foil-cards) and [achievement reference](/en/achievements) for those distinct goals.

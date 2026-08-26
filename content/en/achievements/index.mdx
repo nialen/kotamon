@@ -1,0 +1,189 @@
+---
+title: 'KOTAMON Achievements: All 40 by Activity'
+description: 'Use the exact 40 public Steam achievement names and descriptions, grouped into recycling, savings, upgrades, cards, foil, cereal boxes, figurines, audiotapes, cosplay, beer, and throwing tracks.'
+slug: achievements
+category: Achievements
+updatedAt: '2026-08-25'
+sourceStatus: multi-source
+draft: false
+locale: en
+priority: P2
+related:
+  - cards
+  - guides/cereal-boxes
+  - guides/foil-cards
+  - guides/gameplay
+sources:
+  - label: Steam Global Achievements
+    url: https://steamcommunity.com/stats/4294490/achievements
+    kind: official
+  - label: All 40 KOTAMON Achievements Roadmap
+    url: https://kotamondb.wiki/guides/achievement-roadmap/
+    kind: multi-source
+  - label: Large-scale rebalancing, saves, achievements!
+    url: https://store.steampowered.com/news/app/4294490/view/1841579228668576
+    kind: official
+---
+
+export const achievementGroups = [
+  {
+    title: 'Yard cleanup and recycling',
+    description:
+      'These public milestones count recycled garbage bags or the yard-wide cleanup state.',
+    entries: [
+      { name: 'Removal', description: 'Recycle 7 garbage bags.' },
+      { name: 'Cleanup', description: 'Recycle 69 garbage bags.' },
+      { name: 'Recycling', description: 'Recycle 256 garbage bags.' },
+      {
+        name: 'Is That All?',
+        description: 'Remove all the garbage in the yard.',
+      },
+      { name: 'Annihilation', description: 'Recycle 999 garbage bags.' },
+    ],
+  },
+  {
+    title: 'Savings and upgrades',
+    description:
+      'The money descriptions say have, while the upgrade descriptions count purchases or completed upgrade states.',
+    entries: [
+      { name: 'Lucky #1 Dime', description: 'Have $1,000' },
+      { name: 'Savings Account', description: 'Have $10,000' },
+      { name: 'Rainy Day Fund', description: 'Have $50,000' },
+      { name: "Why Don't You Spend It?!", description: 'Have $100,000' },
+      { name: 'My Better Self!', description: 'Buy an upgrade.' },
+      { name: 'I Have the Power!', description: 'Buy 20 upgrades.' },
+      {
+        name: 'Champion',
+        description: 'Upgrade a stat to its MAX value.',
+      },
+      { name: 'Power Overwhelming', description: 'Buy all the upgrades.' },
+    ],
+  },
+  {
+    title: 'Beer cans',
+    description: 'Each milestone uses the public cumulative drink count.',
+    entries: [
+      { name: 'Barley a Beginning', description: 'Drink 12 cans of beer.' },
+      {
+        name: 'Thanks for All the Beers',
+        description: 'Drink 42 cans of beer.',
+      },
+      { name: 'Lager than Life', description: 'Drink 146 cans of beer.' },
+      {
+        name: 'Many Hoppy Returns!',
+        description: 'Drink 1000 cans of beer.',
+      },
+    ],
+  },
+  {
+    title: 'Trash compactor throws',
+    description:
+      'These entries use the distance stated in the public Steam description.',
+    entries: [
+      {
+        name: '3-Pointer',
+        description: 'Hit the trash compactor tray from 10 meters.',
+      },
+      {
+        name: 'Sharpshooter',
+        description: 'Hit the trash compactor tray from 20 meters.',
+      },
+      {
+        name: 'Olympic Thrower',
+        description: 'Hit the trash compactor tray from 30 meters.',
+      },
+    ],
+  },
+  {
+    title: 'Cards and binder sets',
+    description:
+      'The four color-set goals and Kotalion are public Steam collection requirements.',
+    entries: [
+      { name: 'A Nice Start!', description: 'Collect your first card.' },
+      {
+        name: 'Water-walker',
+        description: 'Collect the full blue card set.',
+      },
+      {
+        name: 'The Dark Master',
+        description: 'Collect the full purple card set.',
+      },
+      { name: 'Firestarter', description: 'Collect the full red card set.' },
+      { name: 'Airbender', description: 'Collect the full white card set.' },
+      { name: "Get 'em All!", description: 'Get Kotalion.' },
+    ],
+  },
+  {
+    title: 'Foil cards',
+    description:
+      'Steam lists these separately from the four base color-set goals.',
+    entries: [
+      {
+        name: 'A True Fan',
+        description: 'Collect a full set of foil cards.',
+      },
+      { name: 'The Collector', description: 'Collect all foil cards.' },
+    ],
+  },
+  {
+    title: 'Cereal boxes',
+    description: 'The public list includes first-box and cumulative-box goals.',
+    entries: [
+      { name: "Just Don't Eat It!", description: 'Open a cereal box.' },
+      { name: 'Gacha Addiction', description: 'Open 10 cereal boxes.' },
+    ],
+  },
+  {
+    title: 'Collectable figurines',
+    description:
+      'Steam spells the item collectable and publishes four cumulative milestones.',
+    entries: [
+      { name: 'Exhibit A', description: 'Find a collectable figurine.' },
+      {
+        name: 'Where Will I Keep It?',
+        description: 'Find 5 collectable figurines.',
+      },
+      { name: 'A New Hobby', description: 'Find 9 collectable figurines.' },
+      {
+        name: 'I Need a Bigger Shelf',
+        description: 'Find 12 collectable figurines.',
+      },
+    ],
+  },
+  {
+    title: 'Audiotapes and radio',
+    description:
+      'The radio action is separate from the three public audiotape milestones.',
+    entries: [
+      { name: 'Wow, It Works?', description: 'Turn on the radio.' },
+      { name: 'Push the Tempo!', description: 'Find an audiotape.' },
+      { name: 'Retro Party', description: 'Find 5 audiotapes.' },
+      { name: 'Melomaniac', description: 'Find 7 audiotapes.' },
+    ],
+  },
+  {
+    title: 'Cosplay outfits',
+    description: 'Steam publishes first-outfit and three-outfit goals.',
+    entries: [
+      { name: 'A Gift for Jenny', description: 'Find a cosplay outfit.' },
+      { name: 'To Be Continued…', description: 'Find 3 cosplay outfits.' },
+    ],
+  },
+];
+
+## About this 40-entry list
+
+Steam showed exactly 40 public achievements when this page was reviewed on August 25, 2026. The names and descriptions below preserve the public Steam wording. The activity groups are an editorial aid based on what each description asks the player to do.
+
+The developer's August 21 update says several achievement issues were fixed after release. If a completed requirement does not unlock, confirm the game is current and preserve a separate good save before retesting. This reference does not assign a completion time or invent hidden requirements.
+
+<section aria-label="All 40 Steam achievements">
+  <AchievementGroups groups={achievementGroups} />
+</section>
+
+## Plan overlapping tracks
+
+The community roadmap notes a practical conflict between the `Have` money milestones and upgrade spending. Let each balance milestone register before using the same balance for upgrade goals. Work recycling, beer, collectibles, and card checks into normal yard cycles so their public counters can progress together.
+
+Use Steam's unlock notification and the in-game interface for open-ended wording such as all garbage, all upgrades, a full foil set, and all foil cards. The public descriptions do not state extra totals for those phrases.
+

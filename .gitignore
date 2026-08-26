@@ -1,0 +1,41 @@
+# Dependencies and framework output
+node_modules/
+.next/
+out/
+.vercel/
+
+# Environment and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+
+# Test and local build artifacts
+coverage/
+playwright-report/
+test-results/
+qa/
+*.log
+tsconfig.tsbuildinfo
+
+# Local agent execution evidence
+.superpowers/
+AGENTS.md
+CLAUDE.md
+
+# Protected research inputs kept local only
+keywords.json
+页面矩阵.md
+关键词素材.md
+待用户补充.md
+品牌与图标素材/
+需求证据/
+docs/
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
