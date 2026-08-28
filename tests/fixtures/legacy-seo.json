@@ -1,0 +1,62 @@
+[
+  {
+    "slug": "achievements",
+    "title": "KOTAMON Achievements: All 40 by Activity",
+    "description": "Use the exact 40 public Steam achievement names and descriptions, grouped into recycling, savings, upgrades, cards, foil, cereal boxes, figurines, audiotapes, cosplay, beer, and throwing tracks."
+  },
+  {
+    "slug": "cards",
+    "title": "KOTAMON Cards: Current List by Color Set",
+    "description": "Check the current 40-card community list by blue, white, red, and purple set, plus Kotalion as a separate special card. Steam confirms the collection goals, while individual base-card names come from maintained community documentation."
+  },
+  {
+    "slug": "collectibles/audiotapes",
+    "title": "KOTAMON Audiotape Locations and 6 of 7 Issues",
+    "description": "Steam requires seven valid audiotape counts for the final milestone. Current reports describe random trash-pile discoveries and occasional display or counter mismatches, not seven reliable fixed coordinates."
+  },
+  {
+    "slug": "collectibles/figurines",
+    "title": "KOTAMON Figurine Locations: Route Checklist",
+    "description": "Use a mixed collection route: check the six currently documented landmark pickups first, then continue normal trash-pile cycles for the random discoveries. The evidence does not support twelve fixed map points."
+  },
+  {
+    "slug": "game/artists",
+    "title": "KOTAMON Artists and Verified Credits",
+    "description": "The supplied official source credits KotaMota Games as the developer and describes hand-drawn card art, but it does not establish an individual illustrator, card artist, character artist, or art director."
+  },
+  {
+    "slug": "game/where-to-play",
+    "title": "Where to Play KOTAMON",
+    "description": "KOTAMON is listed for Windows PC on Steam as App ID 4294490. KotaMota Games developed it, Polnoch published it, and the official release date is August 20, 2026."
+  },
+  {
+    "slug": "guides/card-repair",
+    "title": "KOTAMON Card Repair Guide",
+    "description": "Preserve a separate good save, collect all five card pieces, and assemble the complete card manually at the garage glue table. Automatic assembly and fixed piece coordinates are not officially confirmed."
+  },
+  {
+    "slug": "guides/cereal-boxes",
+    "title": "KOTAMON Cereal Boxes Guide",
+    "description": "Find cereal boxes while searching trash piles, or buy one from Jenny for $10,000 after every attribute is maxed. Boxes can contain foil cards, but official sources publish no drop rate."
+  },
+  {
+    "slug": "guides/foil-cards",
+    "title": "KOTAMON Foil Cards Guide",
+    "description": "Official sources confirm that cereal boxes can contain super-rare foil cards and that foil collection has dedicated achievements. No official drop rate, pity rule, or complete foil list is published."
+  },
+  {
+    "slug": "guides/gameplay",
+    "title": "KOTAMON Gameplay Guide: Core Loop and Priorities",
+    "description": "Search trash piles, recycle and complete orders, then protect useful card finds before repairing, collecting, or trading them. Treat prices and collectible behavior as patch-sensitive."
+  },
+  {
+    "slug": "guides/save-not-working",
+    "title": "KOTAMON Save Not Working: Safe Troubleshooting",
+    "description": "Keep the last good save untouched and make a separate manual save before changing anything. Official fixes addressed several save issues, but later player reports mean missing upgrades still need careful diagnosis."
+  },
+  {
+    "slug": "guides/secret-location",
+    "title": "KOTAMON Secret Location Guide",
+    "description": "Save first. Official notes confirm a hidden surprise, but the available route is community-reported and patch-sensitive. Open the spoiler checklist only when you are ready."
+  }
+]

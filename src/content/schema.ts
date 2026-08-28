@@ -28,6 +28,8 @@ const isoDateSchema = z
 export const contentEntrySchema = z
   .object({
     title: z.string().min(1),
+    seoTitle: z.string().min(1).optional(),
+    pageType: z.enum(['guide', 'hub']).optional(),
     description: z.string().min(1),
     slug: relativeSlugSchema,
     category: z.string().min(1),

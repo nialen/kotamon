@@ -1,6 +1,7 @@
 import { HomeSection } from '@/components/home/home-section';
 import { HomeScreenshot } from '@/components/home/home-screenshot';
 import { SITE } from '@/lib/site';
+import Link from 'next/link';
 
 const FACTS = [
   ['Genre', 'Indie / Simulation'],
@@ -51,6 +52,8 @@ export function GameOverview() {
         </dl>
         <p className="mt-3 text-sm font-semibold text-[var(--muted-foreground)]">
           Release and platform details: <a href={SITE.steamUrl}>KOTAMON on Steam</a>.
+          {' '}Use <Link href="/en/game">Game Information</Link> for PC requirements and credits,
+          or review <Link href="/en/updates">dated updates</Link> before following older advice.
         </p>
       </HomeSection>
     </>

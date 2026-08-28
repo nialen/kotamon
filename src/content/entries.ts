@@ -1,4 +1,12 @@
 import type { ComponentType } from 'react';
+import CollectiblesHub, { frontmatter as collectiblesFrontmatter } from '../../content/en/collectibles/index.mdx';
+import GameHub, { frontmatter as gameFrontmatter } from '../../content/en/game/index.mdx';
+import SystemRequirements, { frontmatter as requirementsFrontmatter } from '../../content/en/game/system-requirements.mdx';
+import Updates, { frontmatter as updatesIndexFrontmatter } from '../../content/en/updates/index.mdx';
+import GuidesHub, { frontmatter as guidesFrontmatter } from '../../content/en/guides/index.mdx';
+import BeginnerGuide, { frontmatter as beginnerFrontmatter } from '../../content/en/guides/beginner-guide.mdx';
+import MoneyGuide, { frontmatter as moneyFrontmatter } from '../../content/en/guides/money.mdx';
+import UpgradesGuide, { frontmatter as upgradesFrontmatter } from '../../content/en/guides/upgrades.mdx';
 
 import AchievementsReference, {
   frontmatter as achievementsFrontmatter,
@@ -104,4 +112,12 @@ export const contentModules: readonly MdxContentModule[] = [
     frontmatter: artistsFrontmatter,
     sourcePath: 'content/en/game/artists.mdx',
   },
+  { default: GuidesHub, frontmatter: guidesFrontmatter, sourcePath: 'content/en/guides/index.mdx' },
+  { default: BeginnerGuide, frontmatter: beginnerFrontmatter, sourcePath: 'content/en/guides/beginner-guide.mdx' },
+  { default: MoneyGuide, frontmatter: moneyFrontmatter, sourcePath: 'content/en/guides/money.mdx' },
+  { default: UpgradesGuide, frontmatter: upgradesFrontmatter, sourcePath: 'content/en/guides/upgrades.mdx' },
+  { default: CollectiblesHub, frontmatter: collectiblesFrontmatter, sourcePath: 'content/en/collectibles/index.mdx' },
+  { default: GameHub, frontmatter: gameFrontmatter, sourcePath: 'content/en/game/index.mdx' },
+  { default: SystemRequirements, frontmatter: requirementsFrontmatter, sourcePath: 'content/en/game/system-requirements.mdx' },
+  { default: Updates, frontmatter: updatesIndexFrontmatter, sourcePath: 'content/en/updates/index.mdx' },
 ];

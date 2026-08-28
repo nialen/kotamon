@@ -12,6 +12,7 @@ import { SourceStatus } from '@/components/site/source-status';
 import { UpdatedAt } from '@/components/site/updated-at';
 import type { RegisteredEntry } from '@/content/registry';
 import type { ContentEntry } from '@/content/schema';
+import { getContentBreadcrumbs } from '@/content/hierarchy';
 
 type ArticleLayoutProps = {
   readonly children: ReactNode;
@@ -30,7 +31,7 @@ export function ArticleLayout({
     <article className="article-layout shell-container">
       <header className="article-header">
         <Breadcrumbs
-          items={[{ label: entry.category }, { label: entry.title }]}
+          items={getContentBreadcrumbs(entry).slice(1)}
         />
         <p className="article-header__category">{entry.category}</p>
         <h1>{entry.title}</h1>

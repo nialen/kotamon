@@ -3,7 +3,7 @@ title: 'KOTAMON Save Not Working: Safe Troubleshooting'
 description: 'Keep the last good save untouched and make a separate manual save before changing anything. Official fixes addressed several save issues, but later player reports mean missing upgrades still need careful diagnosis.'
 slug: guides/save-not-working
 category: Guides
-updatedAt: '2026-08-25'
+updatedAt: '2026-08-29'
 sourceStatus: multi-source
 draft: false
 locale: en
@@ -12,6 +12,12 @@ related:
   - guides/gameplay
   - guides/card-repair
 sources:
+  - label: KOTAMON Steam store page (Steam Cloud support)
+    url: https://store.steampowered.com/app/4294490/KOTAMON/
+    kind: official
+  - label: Steam Support - Steam Cloud troubleshooting
+    url: https://help.steampowered.com/en/wizard/HelpWithSteamIssue/?issueid=812
+    kind: official
   - label: Large-scale rebalancing, saves, achievements!
     url: https://store.steampowered.com/news/app/4294490/view/1841579228668576
     kind: official
@@ -22,9 +28,25 @@ sources:
 
 ## Preserve progress before any test
 
-Stop using the affected save as soon as you notice missing upgrades, an unexpected reset, or a load crash. Keep the last known good save untouched and create a separate manual save before trying a diagnostic step.
+Stop using the affected save as soon as you notice missing upgrades, an unexpected reset, or a load crash. Keep the last known good save untouched. If you can safely create a separate test slot without replacing it, do so before a diagnostic step; do not create new saves just to investigate while the only good state is at risk.
 
 Do not overwrite the only good slot, delete saves, or edit save data to test a theory. Verifying game files may check the installation, but the saved evidence does not show that it restores lost progress.
+
+## Save file location and backup limits
+
+The exact KOTAMON save-folder path has not been verified in the sources used for this guide. Do not substitute a guessed AppData directory, Steam userdata path or another game's save location.
+
+An additional in-game slot and an independent file backup are different precautions. A slot is still part of the game's save system. As general data-safety advice, once the correct files have been positively identified, close the game and copy the complete save set to a separate dated folder before editing or replacing anything. Keep the originals and record the game version and visible progress.
+
+Until that location and file set are verified, this guide does not provide copy-and-paste backup or restore commands. Do not overwrite a current save with a downloaded file whose purpose, version or account is uncertain. Ask for game-specific guidance before attempting a restoration.
+
+## Steam Cloud and sync safety
+
+The official Steam listing confirms Steam Cloud support. That feature alone does not prove that a lost local state can be recovered or that an older version is available. Steam Support describes Cloud storage as potentially including saves, settings and other game-specific data; a sync issue and a game save bug are not automatically the same problem.
+
+As a precaution, note any Cloud warning and the device where the last good progress was seen before launching elsewhere or choosing a replacement copy. If you cannot tell which copy is correct, pause instead of selecting an overwrite at random. Prepare the details listed below, then consult [Steam Support](https://help.steampowered.com/en/wizard/HelpWithSteamIssue/?issueid=812).
+
+This is a preservation-first checklist, not a verified KOTAMON Cloud recovery procedure. Do not disable synchronization, delete Cloud files or reinstall as a blanket cure for missing progress.
 
 ## What the official August 21 update fixed
 
@@ -37,16 +59,18 @@ The developer's August 21, 2026 update says it addressed several save and progre
 
 For demo migration, money and upgrades reset by design while the card collection remains. If that exact transition happened when moving from the demo to the full release, it is documented behavior rather than proof that the current save failed.
 
+The developer also stated that progress already lost to those crashes could not be restored by that fix. Installing a patch and recovering an older save are different outcomes; neither a reinstall nor a successful integrity check proves recovery.
+
 ## What later community reports still describe
 
-The maintained community issue summary records players reporting missing upgrades after the official fixes. These are current player reports, not a developer confirmation that every save issue remains or that one recovery method works for everyone.
+The community issue summary reviewed for the original guide recorded players reporting missing upgrades after the official fixes. This is historical report evidence, not confirmation that the same bug still affects every current build or that one recovery method works for everyone.
 
 A repeated stat pattern reported by players is a symptom, not a normal cap, password, or recovery code. Do not enter or copy values into a save based on that report.
 
 ## Safe diagnostic order
 
 1. Leave the last good save untouched.
-2. Create a separate manual save for testing.
+2. Use a separate manual slot only if it can be created without overwriting the good state. Otherwise stop and seek support.
 3. Confirm the game is updated through Steam before reproducing an issue already named in the August 21 notes.
 4. Decide whether the change matches the documented demo migration or affects a full-release save.
 5. On the test save only, note the upgrade values before and after one normal save and load cycle.
@@ -66,6 +90,7 @@ A useful report should include:
 - whether a new trash pile had been opened;
 - whether the card collection remained;
 - whether the game crashed or loaded with changed progress.
+- whether Steam displayed a Cloud warning and which device last showed the correct progress.
 
 Share a reproducible description through the game's current community or developer support channel. Keep the preserved save untouched while waiting for official guidance, and do not claim a community workaround is an official fix.
 
@@ -74,3 +99,15 @@ Share a reproducible description through the game's current community or develop
 After one successful test load, compare the important progress again before continuing. If the values are still wrong, stop and retain both the untouched good save and the separate test save.
 
 For normal progression after the save is stable, use the [gameplay guide](/en/guides/gameplay). If the issue appeared while assembling a fragmented card, use the [card repair guide](/en/guides/card-repair) without overwriting the known good slot.
+
+## Save questions
+
+### Does this guide give an exact save path?
+
+No. The location remains unverified, so no path or restore command is presented as fact.
+
+### Will Steam Cloud or a patch bring back my missing upgrades?
+
+Not necessarily. Cloud support, official bug fixes and the existence of a recoverable good save are separate questions. Preserve what remains and include the symptoms in a support report.
+
+Return to the [Guides Hub](/en/guides) for other help and progression topics once the save state is stable.

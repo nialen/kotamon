@@ -1,5 +1,8 @@
 import { createServer, type Server } from 'node:http';
 import { AddressInfo } from 'node:net';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
+import path from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -32,6 +35,14 @@ afterEach(async () => {
 });
 
 describe('internal link crawler', () => {
+  it('refuses an occupied port instead of reporting a stale server as verified', async () => {
+    const baseUrl = await fixtureServer({ '/en': { body: 'Unrelated old preview' } });
+    const run = promisify(execFile);
+    await expect(run(process.execPath, [
+      path.resolve('scripts/check-links.mjs'), '--port', new URL(baseUrl).port,
+    ])).rejects.toMatchObject({ code: 1, stderr: expect.stringContaining('already in use') });
+  });
+
   it('visits same-origin links once and ignores only approved non-page protocols and valid external links', async () => {
     const baseUrl = await fixtureServer({
       '/en': {

@@ -255,7 +255,7 @@ describe('createRegistry', () => {
 
 describe('PUBLIC_ROUTES', () => {
   it('contains exactly the approved English routes in order', () => {
-    expect(PUBLIC_ROUTE_COUNT).toBe(13);
+    expect(PUBLIC_ROUTE_COUNT).toBe(21);
     expect(PUBLIC_ROUTES).toEqual([
       '/en',
       '/en/guides/gameplay',
@@ -270,6 +270,14 @@ describe('PUBLIC_ROUTES', () => {
       '/en/achievements',
       '/en/game/where-to-play',
       '/en/game/artists',
+      '/en/guides',
+      '/en/guides/beginner-guide',
+      '/en/guides/money',
+      '/en/guides/upgrades',
+      '/en/collectibles',
+      '/en/game',
+      '/en/game/system-requirements',
+      '/en/updates',
     ]);
   });
 });

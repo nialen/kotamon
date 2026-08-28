@@ -1,16 +1,27 @@
-import {
-  PUBLIC_NAVIGATION_GROUPS,
-} from '@/content/routes';
+'use client';
+
+import { useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { HEADER_NAVIGATION } from '@/content/routes';
 import { SITE } from '@/lib/site';
 import Image from 'next/image';
 
 import { MobileNav } from './mobile-nav';
 import { PrimaryNav } from './primary-nav';
 import { ThemeToggle } from './theme-toggle';
+import { useHeaderScroll } from './use-header-scroll';
 
 export function SiteHeader() {
+  const pathname = usePathname();
+  return <HeaderContent key={pathname} />;
+}
+
+function HeaderContent() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { compact, hidden } = useHeaderScroll(menuOpen);
   return (
-    <header className="site-header">
+    <div className="site-header-slot">
+    <header className="site-header" data-compact={compact} data-scroll-hidden={hidden}>
       <div className="shell-container site-header__inner">
         <a className="site-brand" href={`/${SITE.locale}`}>
           <span aria-hidden="true" className="site-brand__mark">
@@ -34,9 +45,10 @@ export function SiteHeader() {
 
         <div className="site-header__actions">
           <ThemeToggle />
-          <MobileNav groups={PUBLIC_NAVIGATION_GROUPS} />
+          <MobileNav groups={HEADER_NAVIGATION} onOpenChange={setMenuOpen} />
         </div>
       </div>
     </header>
+    </div>
   );
 }

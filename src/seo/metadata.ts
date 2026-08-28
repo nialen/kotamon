@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import type { ContentEntry } from '@/content/schema';
 import { SITE } from '@/lib/site';
+import { getContentBreadcrumbs } from '@/content/hierarchy';
 
 function getArticleUrl(entry: ContentEntry): string {
   return `${SITE.url}/${entry.locale}/${entry.slug}`;
@@ -9,7 +10,7 @@ function getArticleUrl(entry: ContentEntry): string {
 
 export function buildArticleMetadata(entry: ContentEntry): Metadata {
   const url = getArticleUrl(entry);
-  const title = `${entry.title} | ${SITE.name}`;
+  const title = entry.seoTitle ?? `${entry.title} | ${SITE.name}`;
 
   return {
     title: { absolute: title },
@@ -22,7 +23,7 @@ export function buildArticleMetadata(entry: ContentEntry): Metadata {
       },
     },
     openGraph: {
-      type: 'article',
+      type: entry.pageType === 'hub' ? 'website' : 'article',
       url,
       title,
       description: entry.description,
@@ -35,25 +36,15 @@ export function buildArticleMetadata(entry: ContentEntry): Metadata {
 }
 
 export function buildBreadcrumbJsonLd(entry: ContentEntry) {
-  const url = getArticleUrl(entry);
-
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: SITE.name,
-        item: `${SITE.url}/${SITE.locale}`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: entry.title,
-        item: url,
-      },
-    ],
+    itemListElement: getContentBreadcrumbs(entry).map(({ label, href }, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: label,
+      item: `${SITE.url}${href}`,
+    })),
   };
 }
 
@@ -62,7 +53,7 @@ export function buildArticleJsonLd(entry: ContentEntry) {
 
   return {
     '@context': 'https://schema.org',
-    '@type': entry.category === 'Guides' ? 'TechArticle' : 'Article',
+    '@type': entry.pageType === 'hub' ? 'CollectionPage' : entry.category === 'Guides' ? 'TechArticle' : 'Article',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': url,

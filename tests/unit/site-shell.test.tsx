@@ -30,8 +30,18 @@ it.each([
   ['/en/guides/card-repair', 'Cards', 'location'],
   ['/en/guides/foil-cards', 'Cards', 'location'],
   ['/en/guides/cereal-boxes', 'Cards', 'location'],
-  ['/en/guides/gameplay', 'Gameplay', 'page'],
-  ['/en/guides/save-not-working', 'Gameplay', 'location'],
+  ['/en/guides', 'Guides', 'page'],
+  ['/en/guides/gameplay', 'Guides', 'location'],
+  ['/en/guides/save-not-working', 'Guides', 'location'],
+  ['/en/guides/beginner-guide', 'Guides', 'location'],
+  ['/en/guides/money', 'Guides', 'location'],
+  ['/en/guides/upgrades', 'Guides', 'location'],
+  ['/en/collectibles', 'Collectibles', 'page'],
+  ['/en/collectibles/figurines', 'Collectibles', 'location'],
+  ['/en/game', 'Game', 'page'],
+  ['/en/game/where-to-play', 'Game', 'location'],
+  ['/en/game/system-requirements', 'Game', 'location'],
+  ['/en/updates', 'Game', 'location'],
   ['/en/guides/secret-location', 'Collectibles', 'location'],
   ['/en/collectibles/audiotapes', 'Collectibles', 'location'],
   ['/en/achievements', 'Achievements', 'page'],
@@ -51,13 +61,13 @@ it('does not incorrectly select an article section on the homepage', () => {
 
 it('updates the selected mobile page when the route changes', () => {
   routeState.pathname = '/en/guides/foil-cards';
-  const { rerender } = render(<MobileNav groups={PUBLIC_NAVIGATION_GROUPS} />);
+  const { rerender } = render(<SiteHeader />);
   fireEvent.click(screen.getByRole('button', { name: 'Open navigation' }));
-  expect(screen.getByRole('link', { name: 'Foil cards' })).toHaveAttribute('aria-current', 'page');
+  expect(screen.getByRole('navigation', { name: 'Mobile navigation' }).querySelector('[aria-current="page"]')).toHaveTextContent('Foil Cards');
   routeState.pathname = '/en/game/artists';
-  rerender(<MobileNav groups={PUBLIC_NAVIGATION_GROUPS} />);
-  expect(screen.getByRole('link', { name: 'Artists' })).toHaveAttribute('aria-current', 'page');
-  expect(screen.getByRole('link', { name: 'Foil cards' })).not.toHaveAttribute('aria-current');
+  rerender(<SiteHeader />);
+  fireEvent.click(screen.getByRole('button', { name: 'Open navigation' }));
+  expect(within(screen.getByRole('navigation', { name: 'Mobile navigation' })).getByRole('link', { name: 'Artists' })).toHaveAttribute('aria-current', 'page');
 });
 
 it('renders the exact legal disclaimer', () => {
@@ -81,7 +91,8 @@ it('keeps every approved route in the public navigation groups', () => {
     group.items.map((item) => item.href),
   );
 
-  expect(['/en', ...groupedRoutes]).toEqual([...PUBLIC_ROUTES]);
+  expect(new Set(groupedRoutes)).toEqual(new Set(PUBLIC_ROUTES.slice(1)));
+  expect(groupedRoutes).toHaveLength(PUBLIC_ROUTES.length - 1);
 });
 
 it('renders a compact branded header with primary navigation', () => {
@@ -107,6 +118,7 @@ describe('mobile navigation disclosure', () => {
   const groups = [
     {
       label: 'Guides',
+      href: '/en/guides',
       items: [{ label: 'Gameplay', href: '/en/guides/gameplay' }],
     },
   ] as const;
@@ -118,6 +130,7 @@ describe('mobile navigation disclosure', () => {
     expect(trigger).toHaveAttribute('aria-expanded', 'false');
     fireEvent.click(trigger);
     expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    fireEvent.click(screen.getByRole('button', { name: 'Toggle Guides submenu' }));
     expect(screen.getByRole('link', { name: 'Gameplay' })).toBeVisible();
 
     fireEvent.keyDown(document, { key: 'Escape' });
@@ -130,6 +143,7 @@ describe('mobile navigation disclosure', () => {
     const trigger = screen.getByRole('button', { name: 'Open navigation' });
 
     fireEvent.click(trigger);
+    fireEvent.click(screen.getByRole('button', { name: 'Toggle Guides submenu' }));
     const link = screen.getByRole('link', { name: 'Gameplay' });
     link.addEventListener('click', (event) => event.preventDefault());
     fireEvent.click(link);

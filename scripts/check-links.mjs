@@ -2,6 +2,7 @@
 
 import { spawn } from 'node:child_process';
 import process from 'node:process';
+import { createServer } from 'node:net';
 import { pathToFileURL } from 'node:url';
 
 import { JSDOM } from 'jsdom';
@@ -293,6 +294,18 @@ function stopProductionServer(server) {
   return server.stop();
 }
 
+async function assertPortAvailable(host, port) {
+  await new Promise((resolve, reject) => {
+    const probe = createServer();
+    probe.once('error', (error) => reject(
+      error.code === 'EADDRINUSE'
+        ? new Error(`Port ${host}:${port} is already in use. Stop the stale preview or choose --port; use --base-url only for an intentionally external server.`)
+        : error,
+    ));
+    probe.listen(port, host, () => probe.close((error) => error ? reject(error) : resolve()));
+  });
+}
+
 async function runCli() {
   const args = process.argv.slice(2);
   const requestedBaseUrl =
@@ -326,6 +339,7 @@ async function runCli() {
 
   try {
     if (!requestedBaseUrl) {
+      await assertPortAvailable(host, port);
       server = startProductionServer({ host, port });
       await waitForServer(
         server,

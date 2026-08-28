@@ -1,14 +1,18 @@
-import { ArrowRight, CardsThree, GameController, Package, Trophy } from '@phosphor-icons/react/dist/ssr';
+import { ArrowRight, BookOpen, CardsThree, Coins, GameController, Package, TrendUp, Trophy } from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
 
 import { HomeSection } from '@/components/home/home-section';
 import type { PublicNavigationItem } from '@/content/routes';
 
 const TASKS = [
+  { title: 'Beginner Guide', href: '/en/guides/beginner-guide', icon: BookOpen, description: 'Choose your first actions, inspect useful finds and avoid common collecting mistakes.', action: 'Plan your first session', tint: 'bg-[var(--surface-muted)]' },
   { title: 'Gameplay', href: '/en/guides/gameplay', icon: GameController, description: 'Learn the collecting loop, upgrades and the basics of working at the dump.', action: 'Read the gameplay guide', tint: 'bg-[var(--surface-muted)]' },
   { title: 'Cards', href: '/en/cards', icon: CardsThree, description: 'Browse the card sets and follow links to repair, cereal boxes and foil collecting.', action: 'Browse the card reference', tint: 'bg-[var(--surface)]' },
-  { title: 'Collectibles', href: '/en/collectibles/figurines', icon: Package, description: 'Keep track of figurines and other discoveries beyond the card collection.', action: 'Explore collectibles', tint: 'bg-[var(--surface)]' },
+  { title: 'Money', href: '/en/guides/money', icon: Coins, description: 'Weigh income, card selling and spending against the collection progress you want to keep.', action: 'Plan earning and spending', tint: 'bg-[var(--surface)]' },
+  { title: 'Upgrades', href: '/en/guides/upgrades', icon: TrendUp, description: 'Understand character growth and practical purchase priorities, separate from card exchanges.', action: 'Review character upgrades', tint: 'bg-[var(--surface-muted)]' },
+  { title: 'Collectibles', href: '/en/collectibles', icon: Package, description: 'Keep track of figurines, audiotapes and optional discoveries beyond the card collection.', action: 'Explore collectibles', tint: 'bg-[var(--surface)]' },
   { title: 'Achievements', href: '/en/achievements', icon: Trophy, description: 'Check the 40 Steam achievements and their collection and activity milestones.', action: 'View achievements', tint: 'bg-[var(--surface-muted)]' },
+  { title: 'All Guides', href: '/en/guides', icon: BookOpen, description: 'Choose a focused guide for getting started, progression, cards, exploration or save help.', action: 'Explore the Guides Hub', tint: 'bg-[var(--surface)]' },
 ] as const satisfies ReadonlyArray<{
   title: string; href: PublicNavigationItem['href']; icon: typeof GameController;
   description: string; action: string; tint: string;

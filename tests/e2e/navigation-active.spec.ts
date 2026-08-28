@@ -3,8 +3,16 @@ import { mkdir } from 'node:fs/promises';
 
 const evidenceDir = 'qa/images-navigation-2026-08-28';
 const cases = [
-  ['/en/guides/gameplay', 'Gameplay'],
-  ['/en/guides/save-not-working', 'Gameplay'],
+  ['/en/guides', 'Guides'],
+  ['/en/guides/gameplay', 'Guides'],
+  ['/en/guides/save-not-working', 'Guides'],
+  ['/en/guides/beginner-guide', 'Guides'],
+  ['/en/guides/money', 'Guides'],
+  ['/en/guides/upgrades', 'Guides'],
+  ['/en/collectibles', 'Collectibles'],
+  ['/en/game', 'Game'],
+  ['/en/game/system-requirements', 'Game'],
+  ['/en/updates', 'Game'],
   ['/en/cards', 'Cards'],
   ['/en/guides/card-repair', 'Cards'],
   ['/en/guides/foil-cards', 'Cards'],
@@ -22,8 +30,8 @@ test('desktop navigation follows all article sections and keeps the homepage neu
   for (const [route, label] of cases) {
     await page.goto(route);
     const nav = page.getByRole('navigation', { name: 'Primary navigation' });
-    await expect(nav.locator('[aria-current]')).toHaveCount(1);
-    await expect(nav.locator('[aria-current]')).toHaveText(label);
+    await expect(nav.locator('.primary-nav__section-link[aria-current]')).toHaveCount(1);
+    await expect(nav.locator('.primary-nav__section-link[aria-current]')).toHaveText(label);
     const selected = nav.getByRole('link', { name: label, exact: true });
     expect(await selected.evaluate((a) => getComputedStyle(a).backgroundColor)).not.toBe('rgba(0, 0, 0, 0)');
   }
@@ -40,9 +48,10 @@ test('mobile menu selects only the current page and preserves keyboard dismissal
   await page.goto('/en/guides/foil-cards');
   await page.getByRole('button', { name: 'Open navigation' }).click();
   const nav = page.getByRole('navigation', { name: 'Mobile navigation' });
-  await expect(nav.locator('[aria-current="page"]')).toHaveText('Foil cards');
+  await expect(nav.locator('[aria-current="page"]')).toHaveText('Foil Cards');
   await expect(nav.locator('[aria-current]')).toHaveCount(1);
   await page.screenshot({ path: `${evidenceDir}/mobile-foil-selected.png`, animations: 'disabled' });
+  await nav.getByRole('button', { name: 'Toggle Game submenu' }).click();
   await nav.getByRole('link', { name: 'Artists' }).click();
   await expect(page).toHaveURL(/\/en\/game\/artists$/);
   await page.getByRole('button', { name: 'Open navigation' }).click();

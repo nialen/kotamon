@@ -8,8 +8,8 @@ import { isDeepStrictEqual } from 'node:util';
 import matter from 'gray-matter';
 import { createVitest } from 'vitest/node';
 
-const EXPECTED_MDX_COUNT = 12;
-const EXPECTED_PUBLIC_ROUTE_COUNT = 13;
+const EXPECTED_MDX_COUNT = 20;
+const EXPECTED_PUBLIC_ROUTE_COUNT = 21;
 const PUBLISHABLE_SOURCE_STATUSES = new Set([
   'official',
   'multi-source',

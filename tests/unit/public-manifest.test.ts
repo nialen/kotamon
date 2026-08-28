@@ -28,6 +28,14 @@ const approvedRoutes = [
   '/en/achievements',
   '/en/game/where-to-play',
   '/en/game/artists',
+  '/en/guides',
+  '/en/guides/beginner-guide',
+  '/en/guides/money',
+  '/en/guides/upgrades',
+  '/en/collectibles',
+  '/en/game',
+  '/en/game/system-requirements',
+  '/en/updates',
 ] as const;
 
 function runNodeScript(script: string, args: string[] = []) {
@@ -117,7 +125,7 @@ afterEach(() => {
 });
 
 describe('public content manifest', () => {
-  it('publishes exactly the 13 approved English routes', () => {
+  it('publishes exactly the 21 approved English routes', () => {
     expect(PUBLIC_ROUTES).toEqual(approvedRoutes);
     expect(PUBLIC_ROUTES).not.toEqual(
       expect.arrayContaining([
@@ -126,12 +134,12 @@ describe('public content manifest', () => {
     );
   });
 
-  it('keeps the 12 registry entries aligned with the article routes', () => {
+  it('keeps the 20 registry entries aligned with the article routes', () => {
     const registryRoutes = contentRegistry.publicEntries.map(
       ({ locale, slug }) => `/${locale}/${slug}`,
     );
 
-    expect(contentRegistry.allEntries).toHaveLength(12);
+    expect(contentRegistry.allEntries).toHaveLength(20);
     expect(registryRoutes).toEqual(approvedRoutes.slice(1));
   });
 
@@ -140,8 +148,8 @@ describe('public content manifest', () => {
     const output = `${result.stdout}${result.stderr}`;
 
     expect(result.status, output).toBe(0);
-    expect(result.stdout).toContain('Content entries: 12');
-    expect(result.stdout).toContain('Public routes: 13');
+    expect(result.stdout).toContain('Content entries: 20');
+    expect(result.stdout).toContain('Public routes: 21');
   });
 
   it('rejects schema errors with the raw MDX path', () => {
