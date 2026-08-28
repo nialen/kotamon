@@ -2,6 +2,10 @@ import type { Metadata } from 'next';
 
 import { CollectionPath } from '@/components/home/collection-path';
 import { HomeHero } from '@/components/home/home-hero';
+import { GameOverview } from '@/components/home/game-overview';
+import { ArtistsFeature, CardsFeature, CollectiblesFeature, DownloadFeature } from '@/components/home/game-features';
+import { HomeFaq } from '@/components/home/home-faq';
+import { LatestGuides } from '@/components/home/latest-guides';
 import { IssueNotice } from '@/components/home/issue-notice';
 import { TaskGrid } from '@/components/home/task-grid';
 import { TrustPanel } from '@/components/home/trust-panel';
@@ -56,9 +60,16 @@ export default function HomePage() {
         type="application/ld+json"
       />
       <HomeHero />
-      <IssueNotice />
+      <GameOverview />
       <TaskGrid />
+      <CardsFeature />
+      <ArtistsFeature />
+      <DownloadFeature />
+      <CollectiblesFeature />
       <CollectionPath />
+      <LatestGuides />
+      <IssueNotice />
+      <HomeFaq />
       <TrustPanel publishedGuideCount={publishedGuideCount} />
     </>
   );

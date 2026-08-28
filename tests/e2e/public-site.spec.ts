@@ -241,7 +241,7 @@ test('homepage colored surfaces meet WCAG AA text contrast in both themes', asyn
         'main a[href="/en/guides/gameplay"]',
       );
       const whereToPlay = document.querySelector<HTMLAnchorElement>(
-        'main a[href="/en/game/where-to-play"]',
+        'main .home-download-card',
       );
       const whereToPlayCopy = whereToPlay?.querySelector('p');
 

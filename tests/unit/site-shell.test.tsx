@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/vitest';
 
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { Breadcrumbs } from '@/components/site/breadcrumbs';
@@ -15,10 +15,49 @@ import {
   PUBLIC_ROUTES,
 } from '@/content/routes';
 
+const routeState = vi.hoisted(() => ({ pathname: '/en' }));
+vi.mock('next/navigation', () => ({ usePathname: () => routeState.pathname }));
+
 afterEach(() => {
+  routeState.pathname = '/en';
   document.documentElement.removeAttribute('data-theme');
   window.localStorage.clear();
   vi.restoreAllMocks();
+});
+
+it.each([
+  ['/en/cards', 'Cards', 'page'],
+  ['/en/guides/card-repair', 'Cards', 'location'],
+  ['/en/guides/foil-cards', 'Cards', 'location'],
+  ['/en/guides/cereal-boxes', 'Cards', 'location'],
+  ['/en/guides/gameplay', 'Gameplay', 'page'],
+  ['/en/guides/save-not-working', 'Gameplay', 'location'],
+  ['/en/guides/secret-location', 'Collectibles', 'location'],
+  ['/en/collectibles/audiotapes', 'Collectibles', 'location'],
+  ['/en/achievements', 'Achievements', 'page'],
+  ['/en/game/artists', 'Game', 'location'],
+])('marks the correct desktop section for %s', (pathname, label, current) => {
+  routeState.pathname = pathname;
+  render(<SiteHeader />);
+  const nav = screen.getByRole('navigation', { name: 'Primary navigation' });
+  expect(within(nav).getByRole('link', { name: label })).toHaveAttribute('aria-current', current);
+  expect(nav.querySelectorAll('[aria-current]')).toHaveLength(1);
+});
+
+it('does not incorrectly select an article section on the homepage', () => {
+  render(<SiteHeader />);
+  expect(screen.getByRole('navigation', { name: 'Primary navigation' }).querySelector('[aria-current]')).toBeNull();
+});
+
+it('updates the selected mobile page when the route changes', () => {
+  routeState.pathname = '/en/guides/foil-cards';
+  const { rerender } = render(<MobileNav groups={PUBLIC_NAVIGATION_GROUPS} />);
+  fireEvent.click(screen.getByRole('button', { name: 'Open navigation' }));
+  expect(screen.getByRole('link', { name: 'Foil cards' })).toHaveAttribute('aria-current', 'page');
+  routeState.pathname = '/en/game/artists';
+  rerender(<MobileNav groups={PUBLIC_NAVIGATION_GROUPS} />);
+  expect(screen.getByRole('link', { name: 'Artists' })).toHaveAttribute('aria-current', 'page');
+  expect(screen.getByRole('link', { name: 'Foil cards' })).not.toHaveAttribute('aria-current');
 });
 
 it('renders the exact legal disclaimer', () => {

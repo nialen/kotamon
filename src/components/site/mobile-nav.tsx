@@ -2,6 +2,7 @@
 
 import { List, X } from '@phosphor-icons/react';
 import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 import type { PublicNavigationGroup } from '@/content/routes';
 
@@ -10,6 +11,7 @@ type MobileNavProps = {
 };
 
 export function MobileNav({ groups }: MobileNavProps) {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -76,7 +78,7 @@ export function MobileNav({ groups }: MobileNavProps) {
               <ul>
                 {group.items.map((item) => (
                   <li key={item.href}>
-                    <a href={item.href} onClick={() => setIsOpen(false)}>
+                    <a aria-current={pathname === item.href ? 'page' : undefined} href={item.href} onClick={() => setIsOpen(false)}>
                       {item.label}
                     </a>
                   </li>

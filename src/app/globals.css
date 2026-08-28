@@ -126,6 +126,12 @@ a {
   text-underline-offset: 0.18em;
 }
 
+/* Hover feedback uses color/surfaces; resting links and keyboard focus retain their cues. */
+a:hover,
+a:hover .underline {
+  text-decoration-line: none;
+}
+
 button {
   color: inherit;
   font: inherit;
@@ -289,8 +295,6 @@ main {
 
 .primary-nav a:hover {
   background: hsl(204 45% 97% / 0.7);
-  text-decoration: underline;
-  text-decoration-color: var(--accent);
 }
 
 .site-header__actions {
@@ -396,7 +400,8 @@ main {
 
 .mobile-nav__group a {
   display: block;
-  padding: 0.45rem 0;
+  padding: 0.45rem 0.55rem;
+  border-radius: var(--radius-control);
   color: var(--foreground);
   font-size: 0.92rem;
   font-weight: 750;
@@ -406,8 +411,15 @@ main {
 
 .mobile-nav__group a:hover {
   color: var(--foreground-strong);
-  text-decoration: underline;
-  text-decoration-color: var(--accent);
+}
+
+.primary-nav a[aria-current],
+.mobile-nav__group a[aria-current] {
+  background: var(--accent);
+  color: var(--accent-foreground);
+  box-shadow: inset 0 -3px 0 var(--accent-foreground);
+  font-weight: 900;
+  text-decoration: none;
 }
 
 .site-footer {
@@ -482,8 +494,6 @@ main {
 .site-footer__navigation a:hover,
 .site-footer__steam-link:hover {
   color: var(--foreground-strong);
-  text-decoration: underline;
-  text-decoration-color: var(--accent);
 }
 
 .site-footer__legal {
@@ -695,8 +705,6 @@ main {
 
 .table-of-contents a:hover {
   color: var(--foreground-strong);
-  text-decoration: underline;
-  text-decoration-color: var(--accent);
 }
 
 .table-of-contents__nested {

@@ -16,7 +16,8 @@ export function HomeHero() {
             {SITE.name}
           </h1>
           <p className="mt-6 max-w-[34rem] text-lg font-bold leading-relaxed text-[var(--muted-foreground)] md:text-xl">
-            {SITE.positioning}
+            <span>{SITE.positioning}</span>{' '}
+            Explore cards, collectibles, achievements and practical game guides.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link
@@ -37,14 +38,19 @@ export function HomeHero() {
 
         <figure className="m-0 overflow-hidden rounded-[var(--radius-surface)] border-2 border-[var(--border-strong)] bg-[var(--surface)] shadow-[8px_8px_0_var(--shadow-color)] md:col-span-7">
           <Image
-            alt="Paper-cut collection binder with blank card slots and map markers"
-            className="block aspect-[3/2] h-auto w-full object-cover"
-            height={1024}
-            priority
+            alt="KOTAMON gameplay outside Jenny's Office, showing the dump, a garbage bag and the collection UI"
+            className="block aspect-video h-auto w-full object-contain"
+            height={900}
+            loading="eager"
+            fetchPriority="high"
             sizes="(max-width: 767px) calc(100vw - 2rem), 58vw"
-            src="/images/home/collection-board.webp"
-            width={1536}
+            src="/images/home/kotamon-gameplay.webp"
+            width={1600}
           />
+          <figcaption className="border-t-2 border-[var(--border-strong)] px-4 py-3 text-sm font-semibold text-[var(--muted-foreground)]">
+            Gameplay screenshot from the{' '}
+            <a href={SITE.steamUrl}>official Steam store</a>.
+          </figcaption>
         </figure>
       </div>
     </section>
