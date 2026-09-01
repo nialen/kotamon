@@ -1,5 +1,21 @@
 # Deployment Report
 
+## Release 2026-09-01
+
+- Status: live-pending-data
+- Verified: 2026-09-01 15:36 China Standard Time
+- Repository target: `https://github.com/nialen/kotamon.git`; public; branch `main`
+- Application commit pushed without force: `38a657c348f7154ce459ea5c9c440c770c29c3ca`
+- Remote `origin/main` after application push: `38a657c348f7154ce459ea5c9c440c770c29c3ca`
+- Preview deployment: `dpl_AHi9YJjCks4EgUwBkPfd8CiY9mQM`; https://kotamon-eapih6li5-angelicachavira-1451s-projects.vercel.app; READY; created 2026-09-01 15:27 CST
+- Production deployment: `dpl_GbKH8zpXtNzgiSonbjfRoRC6LZpq`; https://kotamon-bdboqn006-angelicachavira-1451s-projects.vercel.app; READY; created 2026-09-01 15:26 CST
+- Production aliases: `https://kotamon.com`, `https://www.kotamon.com`, `https://kotamon.vercel.app`
+- Build verification: frozen install, typecheck, scoped lint, 243 Vitest tests, content validation, and production build passed; 28 outputs generated.
+- Production route verification: all 21 sitemap URLs returned HTTP 200; `robots.txt` and `sitemap.xml` returned HTTP 200.
+- Analytics verification: production loaded the Google tag and emitted a GA4 collect request; fresh GA4 reporting/UI data remains pending.
+- DNS mutations: none.
+- Rollback target: previous known-good production deployment `dpl_7Xvn44T7LgZJg2MKPWQtJBrziYbm`; keep DNS unchanged for an application rollback.
+
 - Status: live-pending-data
 - Last updated: 2026-08-26 11:28 China Standard Time
 - Project path: `F:\gitee\KOTAMON`

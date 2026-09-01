@@ -1,5 +1,22 @@
 # Production QA
 
+## Release 2026-09-01
+
+- Status: live-pending-data
+- Application commit: `38a657c348f7154ce459ea5c9c440c770c29c3ca`
+- Preview: `dpl_AHi9YJjCks4EgUwBkPfd8CiY9mQM` (READY)
+- Production: `dpl_GbKH8zpXtNzgiSonbjfRoRC6LZpq` (READY)
+- Canonical production URL: https://kotamon.com
+- All 21 sitemap routes: HTTP 200 on the canonical host.
+- Redirects: HTTP apex upgraded to HTTPS with 308; `www` redirected to canonical apex with 308.
+- Discovery: `robots.txt` HTTP 200 with canonical sitemap declaration; `sitemap.xml` HTTP 200 with 21 canonical URLs.
+- Desktop 1440 x 900 and mobile 390 x 844 checks covered homepage, guides hub, Artists, Save Help, Secret Location, and Updates.
+- Each sampled page had HTTP 200, one non-empty H1, a non-empty unique-purpose title/description, the expected canonical URL, and internal main-content links.
+- No horizontal overflow occurred at either viewport; homepage-to-guides navigation succeeded.
+- Adsterra no-fill state remained collapsed at 0 px with no label; one ad region was present and no console/page errors were observed.
+- Google tag loader and GA4 collect traffic were observed at both viewports.
+- Pending: fresh GA4 reporting/UI data and new Google indexing observations.
+
 - Verified: 2026-08-26 11:28 China Standard Time
 - Release commit: `0d6dca885021e1aa3c67f5aa596580993a544835`
 - Preview: `dpl_FudFAvfN7Ww7ceSGBczKHRtw1nMf` (READY)

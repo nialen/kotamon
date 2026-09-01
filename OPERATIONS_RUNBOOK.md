@@ -1,5 +1,15 @@
 # Operations Runbook
 
+## Current release state — 2026-09-01
+
+- Application commit: `38a657c348f7154ce459ea5c9c440c770c29c3ca`
+- Active verified production: `dpl_GbKH8zpXtNzgiSonbjfRoRC6LZpq`
+- Canonical URL: https://kotamon.com
+- Release state: `live-pending-data`
+- Previous known-good rollback target: `dpl_7Xvn44T7LgZJg2MKPWQtJBrziYbm`
+- Rollback scope: promote the previous deployment in Vercel, then verify aliases and public routes; do not change DNS for an application-only rollback.
+- Follow-up at 2026-09-02 10:00 China Standard Time: inspect GA4 reporting/Realtime, Search Console sitemap/indexing state, Vercel runtime errors, TLS, redirects, and all public routes.
+
 ## Release
 
 1. Run `pnpm qa`.
@@ -9,7 +19,7 @@
 
 ## Rollback
 
-Use the Vercel deployment list to promote the previous known-good release. Current rollback target: `dpl_9JFJMo641QG8k49gLekFoK8PA5Dq`. Do not change Cloudflare DNS for an application-only rollback.
+Use the Vercel deployment list to promote the previous known-good release. Current rollback target: `dpl_7Xvn44T7LgZJg2MKPWQtJBrziYbm`. Do not change Cloudflare DNS for an application-only rollback.
 
 ## DNS
 

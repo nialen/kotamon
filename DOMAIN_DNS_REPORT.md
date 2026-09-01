@@ -1,5 +1,14 @@
 # Domain and DNS Report
 
+## Verification 2026-09-01
+
+- DNS changes in this release: none.
+- `http://kotamon.com` returned HTTP 308 to `https://kotamon.com/`.
+- `https://www.kotamon.com` returned HTTP 308 to `https://kotamon.com/`.
+- `https://kotamon.com` is attached to READY production deployment `dpl_GbKH8zpXtNzgiSonbjfRoRC6LZpq`.
+- `robots.txt` and `sitemap.xml` returned HTTP 200; all 21 sitemap URLs use the canonical `https://kotamon.com` host.
+- Existing Cloudflare nameservers and Vercel domain configuration were inspected only; no record, proxy, certificate, or nameserver setting was changed.
+
 - Canonical host: `kotamon.com`
 - Redirect host: `www.kotamon.com` -> `https://kotamon.com` (308; verified)
 - Authoritative nameservers: `aron.ns.cloudflare.com`, `ridge.ns.cloudflare.com`
