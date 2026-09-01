@@ -41,3 +41,20 @@ Test Files  1 passed (1)
 Tests  23 passed (23)
 git diff --check: passed
 ```
+
+Final re-run after confirming the restored ending is byte-for-byte `\n\n`:
+
+```powershell
+& 'C:\Users\admin\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' 'node_modules\vitest\vitest.mjs' run --no-file-parallelism tests/unit/intent-related-guides.test.tsx
+git diff --check
+```
+
+Exact output:
+
+```text
+Test Files  1 passed (1)
+Tests  23 passed (23)
+content/en/achievements/index.mdx:189: new blank line at EOF.
+```
+
+The `git diff --check` notice is expected and retained because the reviewer specifically required restoration of the pre-task final blank line; the content file now matches that original ending exactly.
