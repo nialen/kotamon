@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import type { ReactNode } from 'react';
 
 declare global {
@@ -26,7 +27,7 @@ export function RelatedGuideLink({
   sourcePage,
 }: RelatedGuideLinkProps) {
   return (
-    <a
+    <Link
       href={href}
       onClick={() => {
         window.gtag?.('event', 'related_guide_click', {
@@ -38,6 +39,6 @@ export function RelatedGuideLink({
       }}
     >
       {children}
-    </a>
+    </Link>
   );
 }

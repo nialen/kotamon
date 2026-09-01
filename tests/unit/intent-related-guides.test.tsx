@@ -1,12 +1,15 @@
 import '@testing-library/jest-dom/vitest';
 
 import { render } from '@testing-library/react';
+import type { MDXComponents } from 'mdx/types';
+import type { ComponentType } from 'react';
 import { describe, expect, it } from 'vitest';
 
 import { ArticleLayout } from '@/components/article/article-layout';
 import { getArticleStaticParams, getEntry, getRelatedEntries } from '@/content/registry';
 import { PUBLIC_ROUTES } from '@/content/routes';
 import { buildArticleMetadata } from '@/seo/metadata';
+import { useMDXComponents } from '../../mdx-components';
 import legacySeo from '../fixtures/legacy-seo.json';
 
 const approvedMatrix = {
@@ -100,20 +103,25 @@ describe('intent-based related guides', () => {
     if (!entry) return;
 
     const relatedEntries = getRelatedEntries(entry);
+    const Content = entry.Component as ComponentType<{ components: MDXComponents }>;
     const { container } = render(
       <ArticleLayout
         entry={entry}
         relatedEntries={relatedEntries}
         sourcePage="/en/guides/secret-location"
       >
-        {null}
+        <Content components={useMDXComponents()} />
       </ArticleLayout>,
     );
 
     expect(container.querySelector('.related-guides')).toHaveTextContent(
       'Explore More Hidden Content',
     );
+
+    const articleBody = container.querySelector('.article-body');
+    expect(articleBody).not.toBeNull();
     for (const slug of approvedMatrix['guides/secret-location']) {
+      expect(articleBody!.querySelectorAll(`a[href="/en/${slug}"]`)).toHaveLength(1);
       expect(container.querySelector(`.related-guides a[href="/en/${slug}"]`)).not.toBeNull();
     }
   });
