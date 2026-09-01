@@ -93,13 +93,15 @@ for (const width of [1440, 390]) {
       'collection-path-title',
       'trust-panel-title',
     ]) {
-      const rhythm = await page.locator(`#${id}`).locator('..').evaluate((node) => {
-        const style = getComputedStyle(node);
-        return {
-          paddingBottom: Number.parseFloat(style.paddingBottom),
-          paddingTop: Number.parseFloat(style.paddingTop),
-        };
-      });
+      const rhythm = await page
+        .locator(`section[aria-labelledby="${id}"]`)
+        .evaluate((node) => {
+          const style = getComputedStyle(node);
+          return {
+            paddingBottom: Number.parseFloat(style.paddingBottom),
+            paddingTop: Number.parseFloat(style.paddingTop),
+          };
+        });
       expect.soft(rhythm.paddingTop, `${id} top padding`).toBeLessThanOrEqual(sectionPaddingLimit);
       expect.soft(rhythm.paddingBottom, `${id} bottom padding`).toBeLessThanOrEqual(sectionPaddingLimit);
     }

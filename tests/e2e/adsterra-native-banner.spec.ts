@@ -142,7 +142,14 @@ test('collapses the entire native ad region when the provider returns no creativ
   page.on('pageerror', (error) => consoleErrors.push(error.message));
   await page.route(AD_SCRIPT, (route) =>
     route.fulfill({
-      body: '',
+      body: `
+const container = document.querySelector('${AD_CONTAINER}');
+container.innerHTML = [
+  '<script data-provider-loader type="application/json">{}</script>',
+  '<div data-provider-hidden hidden></div>',
+  '<div data-provider-placeholder style="height:0;width:0"></div>',
+].join('');
+`,
       contentType: 'application/javascript',
       status: 200,
     }),
@@ -153,7 +160,9 @@ test('collapses the entire native ad region when the provider returns no creativ
   const ad = page.locator('[data-adsterra-native]');
   await expect(ad).toHaveAttribute('data-ad-state', 'empty');
   await expect(ad.locator('.native-ad__label')).toHaveCount(0);
-  await expect(page.locator(AD_CONTAINER)).toBeEmpty();
+  await expect(page.locator('[data-provider-loader]')).toHaveCount(1);
+  await expect(page.locator('[data-provider-hidden]')).toHaveCount(1);
+  await expect(page.locator('[data-provider-placeholder]')).toHaveCount(1);
   expect((await ad.boundingBox())?.height ?? 0).toBeLessThanOrEqual(1);
 
   await page.locator('main a[href="/en/guides"]').first().click();

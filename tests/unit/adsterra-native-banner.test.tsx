@@ -11,6 +11,29 @@ const scriptState = vi.hoisted(() => ({
   calls: [] as Array<Record<string, unknown>>,
 }));
 
+function makeRenderable(element: HTMLElement) {
+  const rect = {
+    bottom: 250,
+    height: 250,
+    left: 0,
+    right: 300,
+    toJSON: () => ({}),
+    top: 0,
+    width: 300,
+    x: 0,
+    y: 0,
+  } as DOMRect;
+  vi.spyOn(element, 'getBoundingClientRect').mockReturnValue(rect);
+  vi.spyOn(element, 'getClientRects').mockReturnValue({
+    0: rect,
+    item: (index: number) => (index === 0 ? rect : null),
+    length: 1,
+    [Symbol.iterator]: function* () {
+      yield rect;
+    },
+  } as DOMRectList);
+}
+
 vi.mock('next/navigation', () => ({
   notFound: vi.fn(),
   usePathname: () => routeState.pathname,
@@ -67,6 +90,7 @@ it('keeps the ad region hidden until the provider injects a creative', async () 
 
   const creative = document.createElement('iframe');
   creative.dataset.providerAd = 'loaded';
+  makeRenderable(creative);
   providerContainer?.append(creative);
 
   await waitFor(() => {
@@ -76,6 +100,32 @@ it('keeps the ad region hidden until the provider injects a creative', async () 
   expect(container.querySelector('.native-ad__label')).toHaveTextContent(
     'Advertisement',
   );
+});
+
+it('keeps loader and zero-size provider nodes in the no-fill state', async () => {
+  const layout = await LocaleLayout({
+    children: <section>Page content</section>,
+    params: Promise.resolve({ locale: 'en' }),
+  });
+  const { container } = render(layout);
+  const ad = container.querySelector('[data-adsterra-native]');
+  const providerContainer = container.querySelector(
+    '#container-10de3692fca1aa56ca3ff0485ea3e9e6',
+  );
+  const loader = document.createElement('script');
+  const hiddenWrapper = document.createElement('div');
+  const zeroSizePlaceholder = document.createElement('div');
+  hiddenWrapper.hidden = true;
+  zeroSizePlaceholder.style.height = '0';
+  zeroSizePlaceholder.style.width = '0';
+
+  providerContainer?.append(loader, hiddenWrapper, zeroSizePlaceholder);
+
+  await waitFor(() => {
+    expect(ad).toHaveAttribute('data-ad-state', 'empty');
+  });
+  expect(ad).toHaveAttribute('aria-hidden', 'true');
+  expect(container.querySelector('.native-ad__label')).not.toBeInTheDocument();
 });
 
 it('hides the complete ad region again when the provider creative is removed', async () => {
@@ -89,7 +139,11 @@ it('hides the complete ad region again when the provider creative is removed', a
     '#container-10de3692fca1aa56ca3ff0485ea3e9e6',
   );
 
-  providerContainer!.innerHTML = '<div data-provider-ad>Loaded creative</div>';
+  const creative = document.createElement('div');
+  creative.dataset.providerAd = 'loaded';
+  creative.textContent = 'Loaded creative';
+  makeRenderable(creative);
+  providerContainer!.append(creative);
   await waitFor(() => {
     expect(ad).toHaveAttribute('data-ad-state', 'filled');
   });
@@ -157,7 +211,10 @@ it.each(PUBLIC_ROUTES)('includes the approved ad placement on %s', async (pathna
   });
   const { container } = render(layout);
 
+  const ad = container.querySelector('[data-adsterra-native]');
   expect(container.querySelectorAll('[data-adsterra-native]')).toHaveLength(1);
+  expect(ad).not.toHaveAttribute('hidden');
+  expect(scriptState.calls).toHaveLength(1);
 });
 
 it('loads the exact Adsterra script once for the single provider container', async () => {

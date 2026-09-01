@@ -28,6 +28,32 @@ const MONETIZED_ROUTES = new Set([
   '/en/updates',
 ]);
 
+const NON_CREATIVE_ELEMENTS = 'link, meta, script, style, template';
+
+function hasRenderableCreative(container: HTMLElement) {
+  return [...container.querySelectorAll('*')].some((element) => {
+    if (
+      element.matches(NON_CREATIVE_ELEMENTS) ||
+      element.getAttribute('aria-hidden') === 'true' ||
+      (element instanceof HTMLElement && element.hidden)
+    ) {
+      return false;
+    }
+
+    const style = getComputedStyle(element);
+    if (style.display === 'none' || style.visibility === 'hidden') {
+      return false;
+    }
+
+    const bounds = element.getBoundingClientRect();
+    return (
+      element.getClientRects().length > 0 &&
+      bounds.width > 0 &&
+      bounds.height > 0
+    );
+  });
+}
+
 export function AdsterraNativeBanner() {
   const pathname = usePathname();
   const isMonetized = MONETIZED_ROUTES.has(pathname);
@@ -43,16 +69,28 @@ export function AdsterraNativeBanner() {
       return;
     }
 
-    const updateCreativeState = () => {
-      setHasCreative(container.childElementCount > 0);
-    };
+    const updateCreativeState = () =>
+      setHasCreative(hasRenderableCreative(container));
 
     updateCreativeState();
 
     const observer = new MutationObserver(updateCreativeState);
-    observer.observe(container, { childList: true, subtree: true });
+    observer.observe(container, {
+      attributeFilter: ['aria-hidden', 'class', 'hidden', 'style'],
+      attributes: true,
+      childList: true,
+      subtree: true,
+    });
+    const resizeObserver =
+      typeof ResizeObserver === 'undefined'
+        ? null
+        : new ResizeObserver(updateCreativeState);
+    resizeObserver?.observe(container);
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      resizeObserver?.disconnect();
+    };
   }, [isMonetized]);
 
   return (

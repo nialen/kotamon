@@ -521,18 +521,20 @@ main {
 }
 
 .native-ad {
+  clip-path: inset(50%);
   height: 0;
   min-height: 0;
   margin-block-start: 0;
   overflow: hidden;
-  visibility: hidden;
+  pointer-events: none;
 }
 
 .native-ad[data-ad-state="filled"] {
+  clip-path: none;
   height: auto;
   margin-block-start: clamp(3rem, 6vw, 5rem);
   overflow: visible;
-  visibility: visible;
+  pointer-events: auto;
 }
 
 .native-ad__frame {
