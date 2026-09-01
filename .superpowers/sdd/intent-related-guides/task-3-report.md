@@ -24,3 +24,20 @@ git diff --check
 Focused test result: 1 file passed, 23 tests passed. Content validation result: 20 entries, 20 registry entries, 21 public routes, 0 errors.
 
 The worktree’s pre-existing `pnpm-lock.yaml`, `.superpowers-install.*`, and `pnpm-workspace.yaml` changes were intentionally not staged.
+
+## Round 1 correction
+
+Restored the pre-task final blank line in `content/en/achievements/index.mdx`; the approved frontmatter matrix remains unchanged.
+
+```powershell
+& 'C:\Users\admin\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' 'node_modules\vitest\vitest.mjs' run --no-file-parallelism tests/unit/intent-related-guides.test.tsx
+git diff --check
+```
+
+Output:
+
+```text
+Test Files  1 passed (1)
+Tests  23 passed (23)
+git diff --check: passed
+```
