@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { ReactNode } from 'react';
 
+import { AdsterraNativeBanner } from '@/components/ads/adsterra-native-banner';
 import { SiteFooter } from '@/components/site/site-footer';
 import { SiteHeader } from '@/components/site/site-header';
 import { isSupportedLocale } from '@/lib/locale';
@@ -34,6 +35,7 @@ export default async function LocaleLayout({
       <main id="main-content" tabIndex={-1}>
         {children}
       </main>
+      <AdsterraNativeBanner />
       <SiteFooter />
     </>
   );

@@ -23,18 +23,18 @@ function renderEntry(slug: string) {
 
 describe('Task 12 public content', () => {
   it.each([
-    ['collectibles/figurines', 'multi-source', 'P1'],
-    ['collectibles/audiotapes', 'multi-source', 'P1'],
-    ['game/where-to-play', 'official', 'P2'],
-    ['game/artists', 'single-source', 'P2'],
-  ] as const)('registers %s with its required source boundary', (slug, status, priority) => {
+    ['collectibles/figurines', 'multi-source', 'P1', '2026-08-25'],
+    ['collectibles/audiotapes', 'multi-source', 'P1', '2026-08-25'],
+    ['game/where-to-play', 'official', 'P2', '2026-08-25'],
+    ['game/artists', 'single-source', 'P2', '2026-08-31'],
+  ] as const)('registers %s with its required source boundary', (slug, status, priority, updatedAt) => {
     const entry = getEntry('en', slug);
 
     expect(entry).toMatchObject({
       slug,
       sourceStatus: status,
       priority,
-      updatedAt: '2026-08-25',
+      updatedAt,
       draft: false,
       locale: 'en',
     });
@@ -75,7 +75,7 @@ describe('Task 12 public content', () => {
     const copy = document.body.textContent ?? '';
 
     expect(copy).toContain(
-      'Individual artist names are not established by the supplied sources.',
+      'Publicly available official sources currently do not provide a complete individual artist list.',
     );
     expect(copy).toMatch(/in-game credits/i);
     expect(copy).toContain('KotaMota Games');

@@ -25,7 +25,10 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 
       }
       await page.screenshot({ path: `${directory}/${route.slice(1).replaceAll('/', '-')}-${viewport.width}.png`, fullPage: true });
     }
-    await page.getByRole('navigation', { name: 'Table of contents' }).getByRole('link').first().click();
+    await page
+      .getByRole('navigation', { name: 'Table of contents' })
+      .getByRole('link', { name: 'August 27: card exchanges and fixes' })
+      .click();
     await expect(page).toHaveURL(/#august-27-2026$/);
     await expect(page.locator('#august-27-2026')).toBeInViewport();
     await page.goto('/en/game/system-requirements');

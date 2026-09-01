@@ -22,7 +22,8 @@
   {
     "slug": "game/artists",
     "title": "KOTAMON Artists and Verified Credits",
-    "description": "The supplied official source credits KotaMota Games as the developer and describes hand-drawn card art, but it does not establish an individual illustrator, card artist, character artist, or art director."
+    "seoTitle": "KOTAMON Artists, Card Illustrators & Artwork Credits",
+    "description": "Who created the KOTAMON card artwork? Official sources credit KotaMota Games as developer and describe hand-drawn cards, but do not provide a complete individual artist list."
   },
   {
     "slug": "game/where-to-play",
@@ -52,11 +53,11 @@
   {
     "slug": "guides/save-not-working",
     "title": "KOTAMON Save Not Working: Safe Troubleshooting",
-    "description": "Keep the last good save untouched and make a separate manual save before changing anything. Official fixes addressed several save issues, but later player reports mean missing upgrades still need careful diagnosis."
+    "description": "Check the KOTAMON save file location status, Steam Cloud support, backup precautions and safe troubleshooting. The exact local save path is not reliably confirmed."
   },
   {
     "slug": "guides/secret-location",
     "title": "KOTAMON Secret Location Guide",
-    "description": "Save first. Official notes confirm a hidden surprise, but the available route is community-reported and patch-sensitive. Open the spoiler checklist only when you are ready."
+    "description": "The official GIGA patch confirms a hidden surprise. Community reports place the KOTAMON secret location by Jenny’s house using a patch-sensitive route; save first."
   }
 ]

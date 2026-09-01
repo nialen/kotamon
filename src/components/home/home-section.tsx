@@ -16,7 +16,7 @@ export function HomeSection({
   readonly className?: string;
 }) {
   return (
-    <section aria-labelledby={id} className={`shell-container py-12 md:py-16 ${className}`}>
+    <section aria-labelledby={id} className={`shell-container py-10 md:py-12 ${className}`}>
       <h2 className={HOME_HEADING} id={id}>{title}</h2>
       {children}
     </section>

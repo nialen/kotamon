@@ -41,8 +41,8 @@ export function TrustPanel({ publishedGuideCount }: TrustPanelProps) {
       : 'Every published guide carries a source label and update date.';
 
   return (
-    <section aria-labelledby="trust-panel-title" className="shell-container py-16 md:py-24">
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
+    <section aria-labelledby="trust-panel-title" className="shell-container py-10 md:py-12">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8">
         <div
           className="rounded-[var(--radius-surface)] border-2 border-[var(--border-strong)] p-6 shadow-[6px_6px_0_var(--shadow-color)] lg:col-span-5 lg:p-8"
           style={{
@@ -57,7 +57,7 @@ export function TrustPanel({ publishedGuideCount }: TrustPanelProps) {
             weight="bold"
           />
           <h2
-            className="mt-6 text-balance font-display text-3xl leading-tight tracking-[-0.025em] text-[var(--foreground-strong)] md:text-4xl"
+            className="mt-4 text-balance font-display text-3xl leading-tight tracking-[-0.025em] text-[var(--foreground-strong)] md:text-4xl"
             id="trust-panel-title"
           >
             Know what supports each answer
@@ -77,7 +77,7 @@ export function TrustPanel({ publishedGuideCount }: TrustPanelProps) {
 
             return (
               <div
-                className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-2 border-b-2 border-[var(--border)] py-6 first:pt-0 last:border-b-0 last:pb-0 md:grid-cols-[auto_12rem_minmax(0,1fr)] md:items-center"
+                className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-2 border-b-2 border-[var(--border)] py-4 first:pt-0 last:border-b-0 last:pb-0 md:grid-cols-[auto_12rem_minmax(0,1fr)] md:items-center"
                 key={level.label}
               >
                 <span className="inline-grid size-11 place-items-center rounded-full bg-accent text-[var(--accent-foreground)]">

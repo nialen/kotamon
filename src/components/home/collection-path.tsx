@@ -38,7 +38,7 @@ export function CollectionPath() {
   return (
     <section
       aria-labelledby="collection-path-title"
-      className="border-y-2 border-[var(--border-strong)] bg-[var(--surface-muted)] py-16 md:py-24"
+      className="border-y-2 border-[var(--border-strong)] bg-[var(--surface-muted)] py-10 md:py-12"
     >
       <div className="shell-container">
         <header className="max-w-[44rem]">
@@ -54,7 +54,7 @@ export function CollectionPath() {
           </p>
         </header>
 
-        <nav aria-label="Collection guide path" className="mt-10">
+        <nav aria-label="Collection guide path" className="mt-7">
           <ol className="relative m-0 grid list-none grid-cols-1 gap-5 p-0 before:absolute before:bottom-8 before:left-6 before:top-8 before:w-0.5 before:bg-[var(--border-strong)] md:grid-cols-5 md:gap-4 md:before:bottom-auto md:before:left-[10%] md:before:right-[10%] md:before:top-7 md:before:h-0.5 md:before:w-auto">
             {COLLECTION_STOPS.map((stop) => {
               const StopIcon = stop.icon;

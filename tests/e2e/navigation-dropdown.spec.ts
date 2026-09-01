@@ -40,6 +40,35 @@ test('desktop icon dropdown works with hover, keyboard, outside click and real l
   await page.screenshot({ path: 'qa/navigation-dropdown/desktop-dark.png' });
 });
 
+test('submenu carets rotate without adding a hover or open background', async ({ page }) => {
+  await page.goto('/en/cards');
+  const desktopNav = page.getByRole('navigation', { name: 'Primary navigation' });
+  const desktopTrigger = desktopNav.getByRole('button', { name: 'Toggle Guides submenu' });
+  const desktopCaret = desktopTrigger.locator('svg');
+  const closedTransform = await desktopCaret.evaluate((node) => getComputedStyle(node).transform);
+
+  await desktopTrigger.hover();
+  await expect(desktopTrigger).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+  await expect(desktopTrigger).toHaveAttribute('aria-expanded', 'true');
+  await expect.poll(() => desktopCaret.evaluate((node) => getComputedStyle(node).transform))
+    .not.toBe(closedTransform);
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.getByRole('button', { name: 'Open navigation' }).click();
+  const mobileNav = page.getByRole('navigation', { name: 'Mobile navigation' });
+  const mobileTrigger = mobileNav.getByRole('button', { name: 'Toggle Guides submenu' });
+  const mobileCaret = mobileTrigger.locator('svg');
+  const mobileClosedTransform = await mobileCaret.evaluate((node) => getComputedStyle(node).transform);
+
+  await mobileTrigger.hover();
+  await expect(mobileTrigger).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+  await mobileTrigger.click();
+  await expect(mobileTrigger).toHaveAttribute('aria-expanded', 'true');
+  await expect(mobileTrigger).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+  await expect.poll(() => mobileCaret.evaluate((node) => getComputedStyle(node).transform))
+    .not.toBe(mobileClosedTransform);
+});
+
 test('mobile header shrinks, hides downward, returns upward and stays visible for an open menu', async ({ page }) => {
   await mkdir('qa/navigation-dropdown', { recursive: true });
   await page.setViewportSize({ width: 390, height: 844 });

@@ -68,3 +68,40 @@ for (const width of [1440, 1024, 390]) {
     }
   });
 }
+
+for (const width of [1440, 390]) {
+  test(`homepage keeps a compact vertical rhythm at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/en');
+
+    const hero = page.locator('#home-title').locator('..').locator('..');
+    const heroRhythm = await hero.evaluate((node) => {
+      const style = getComputedStyle(node);
+      return {
+        minHeight: Number.parseFloat(style.minHeight),
+        paddingBottom: Number.parseFloat(style.paddingBottom),
+        paddingTop: Number.parseFloat(style.paddingTop),
+      };
+    });
+    expect(heroRhythm.minHeight).toBeLessThanOrEqual(1);
+    expect(heroRhythm.paddingTop).toBeLessThanOrEqual(width >= 768 ? 32 : 24);
+    expect(heroRhythm.paddingBottom).toBeLessThanOrEqual(width >= 768 ? 32 : 24);
+
+    const sectionPaddingLimit = width >= 768 ? 48 : 40;
+    for (const id of [
+      'about-kotamon-title',
+      'collection-path-title',
+      'trust-panel-title',
+    ]) {
+      const rhythm = await page.locator(`#${id}`).locator('..').evaluate((node) => {
+        const style = getComputedStyle(node);
+        return {
+          paddingBottom: Number.parseFloat(style.paddingBottom),
+          paddingTop: Number.parseFloat(style.paddingTop),
+        };
+      });
+      expect.soft(rhythm.paddingTop, `${id} top padding`).toBeLessThanOrEqual(sectionPaddingLimit);
+      expect.soft(rhythm.paddingBottom, `${id} bottom padding`).toBeLessThanOrEqual(sectionPaddingLimit);
+    }
+  });
+}

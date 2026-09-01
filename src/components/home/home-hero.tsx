@@ -7,7 +7,7 @@ import { SITE } from '@/lib/site';
 export function HomeHero() {
   return (
     <section aria-labelledby="home-title" className="shell-container">
-      <div className="grid min-h-[calc(100dvh-4.5rem)] grid-cols-1 items-center gap-8 py-8 md:grid-cols-12 md:gap-10 md:py-12">
+      <div className="grid grid-cols-1 items-center gap-8 py-6 md:grid-cols-12 md:gap-10 md:py-8">
         <div className="md:col-span-5 md:pr-4">
           <h1
             className="max-w-[12ch] text-balance font-display text-[clamp(2.45rem,11vw,4.5rem)] leading-[0.98] tracking-[-0.045em] text-[var(--foreground-strong)] md:text-[clamp(3.3rem,5.1vw,5rem)]"
@@ -15,11 +15,11 @@ export function HomeHero() {
           >
             {SITE.name}
           </h1>
-          <p className="mt-6 max-w-[34rem] text-lg font-bold leading-relaxed text-[var(--muted-foreground)] md:text-xl">
+          <p className="mt-4 max-w-[34rem] text-lg font-bold leading-relaxed text-[var(--muted-foreground)] md:text-xl">
             <span>{SITE.positioning}</span>{' '}
             Explore cards, collectibles, achievements and practical game guides.
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <div className="mt-6 flex flex-wrap items-center gap-3">
             <Link
               className="inline-flex min-h-12 items-center gap-2 whitespace-nowrap rounded-full border-2 border-[var(--border-strong)] bg-accent px-5 py-3 font-extrabold text-[var(--accent-foreground)] no-underline shadow-[3px_3px_0_var(--shadow-color)] hover:-translate-y-0.5 hover:shadow-[5px_5px_0_var(--shadow-color)] active:translate-y-px"
               href="/en/guides/gameplay"

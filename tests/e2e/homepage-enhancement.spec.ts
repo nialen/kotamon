@@ -15,6 +15,20 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 
     page.on('console', (message) => {
       if (message.type() === 'error') errors.push(message.text());
     });
+    page.on('response', (response) => {
+      if (response.status() >= 400) {
+        errors.push(`HTTP ${response.status()}: ${response.url()}`);
+      }
+    });
+    await page.route(
+      'https://pl31104288.profitableratecpmnetwork.com/10de3692fca1aa56ca3ff0485ea3e9e6/invoke.js',
+      (route) =>
+        route.fulfill({
+          body: '',
+          contentType: 'application/javascript',
+          status: 200,
+        }),
+    );
     await page.addInitScript(() => {
       const metrics = { cls: 0, lcp: 0 };
       Object.assign(window, { homepageMetrics: metrics });

@@ -15,12 +15,12 @@ import { useMDXComponents } from '../../mdx-components';
 afterEach(cleanup);
 
 describe('batch-one public content', () => {
-  it.each(legacySeo)('preserves the SEO identity of $slug', ({ slug, title, description }) => {
+  it.each(legacySeo)('preserves the approved SEO identity of $slug', ({ slug, title, seoTitle, description }) => {
     const entry = getEntry('en', slug)!;
     expect(entry.title).toBe(title);
     expect(entry.description).toBe(description);
     const metadata = buildArticleMetadata(entry);
-    expect(metadata.title).toEqual({ absolute: `${title} | KOTAMON Wiki & Guide` });
+    expect(metadata.title).toEqual({ absolute: seoTitle ?? `${title} | KOTAMON Wiki & Guide` });
     expect(metadata.alternates?.canonical).toBe(`https://kotamon.com/en/${slug}`);
     const { container } = render(<ArticleLayout entry={entry}>{null}</ArticleLayout>);
     expect(container.querySelector('h1')?.textContent).toBe(title);

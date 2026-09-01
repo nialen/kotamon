@@ -1,9 +1,9 @@
 ---
 title: 'KOTAMON Save Not Working: Safe Troubleshooting'
-description: 'Keep the last good save untouched and make a separate manual save before changing anything. Official fixes addressed several save issues, but later player reports mean missing upgrades still need careful diagnosis.'
+description: 'Check the KOTAMON save file location status, Steam Cloud support, backup precautions and safe troubleshooting. The exact local save path is not reliably confirmed.'
 slug: guides/save-not-working
 category: Guides
-updatedAt: '2026-08-29'
+updatedAt: '2026-08-31'
 sourceStatus: multi-source
 draft: false
 locale: en
@@ -28,21 +28,19 @@ sources:
     kind: multi-source
 ---
 
-## Preserve progress before any test
+## KOTAMON Save File Location
 
-Stop using the affected save as soon as you notice missing upgrades, an unexpected reset, or a load crash. Keep the last known good save untouched. If you can safely create a separate test slot without replacing it, do so before a diagnostic step; do not create new saves just to investigate while the only good state is at risk.
+The exact local save path has not been reliably confirmed in the official sources currently available. The Steam store confirms Steam Cloud support, but it does not publish a verified Windows save folder or identify the complete local file set.
 
-Do not overwrite the only good slot, delete saves, or edit save data to test a theory. Verifying game files may check the installation, but the saved evidence does not show that it restores lost progress.
+Do not substitute a guessed AppData directory, Steam userdata path or another game's save location. Until the location is positively identified from game-specific evidence, this guide does not provide a copy-and-paste save path or restore command.
 
-## Save file location and backup limits
+## Before Troubleshooting Your Save
 
-The exact KOTAMON save-folder path has not been verified in the sources used for this guide. Do not substitute a guessed AppData directory, Steam userdata path or another game's save location.
+Stop using the affected save as soon as you notice missing upgrades, an unexpected reset or a load crash. Keep the last known good save untouched. If you can safely create a separate test slot without replacing it, do so before a diagnostic step; do not create new saves just to investigate while the only good state is at risk.
 
-An additional in-game slot and an independent file backup are different precautions. A slot is still part of the game's save system. As general data-safety advice, once the correct files have been positively identified, close the game and copy the complete save set to a separate dated folder before editing or replacing anything. Keep the originals and record the game version and visible progress.
+Do not overwrite the only good slot, delete saves or edit save data to test a theory. Verifying game files may check the installation, but the saved evidence does not show that it restores lost progress.
 
-Until that location and file set are verified, this guide does not provide copy-and-paste backup or restore commands. Do not overwrite a current save with a downloaded file whose purpose, version or account is uncertain. Ask for game-specific guidance before attempting a restoration.
-
-## Steam Cloud and sync safety
+## Does KOTAMON Use Steam Cloud?
 
 The official Steam listing confirms Steam Cloud support. That feature alone does not prove that a lost local state can be recovered or that an older version is available. Steam Support describes Cloud storage as potentially including saves, settings and other game-specific data; a sync issue and a game save bug are not automatically the same problem.
 
@@ -50,9 +48,15 @@ As a precaution, note any Cloud warning and the device where the last good progr
 
 This is a preservation-first checklist, not a verified KOTAMON Cloud recovery procedure. Do not disable synchronization, delete Cloud files or reinstall as a blanket cure for missing progress.
 
+## How to Back Up Your KOTAMON Save
+
+An additional in-game slot and an independent file backup are different precautions. A slot is still part of the game's save system. As general data-safety advice, once the correct KOTAMON files have been positively identified, close the game and copy the complete save set to a separate dated folder before editing or replacing anything. Keep the originals and record the game version and visible progress.
+
+Because the exact folder and file set remain unverified, do not copy a random folder merely because its timestamp changed. Do not overwrite a current save with a downloaded file whose purpose, version or account is uncertain. Ask for game-specific guidance before attempting a restoration.
+
 ## What the official August 21 update fixed
 
-The developer's August 21, 2026 update says it addressed several save and progression problems. The official notes include:
+The developer's August 21, 2026 update says it addressed several save and progression problems. See the dated context in [KOTAMON Updates and Patch Notes](/en/updates). The official notes include:
 
 - fixes for crashes connected to saving and loading;
 - autosaving when a new trash pile is opened;
@@ -69,7 +73,13 @@ The community issue summary reviewed for the original guide recorded players rep
 
 A repeated stat pattern reported by players is a symptom, not a normal cap, password, or recovery code. Do not enter or copy values into a save based on that report.
 
-## Safe diagnostic order
+## How to Recover a KOTAMON Save
+
+No universal KOTAMON recovery procedure has been verified by the sources used here. Recovery depends on whether a separate good slot, an independently backed-up file set or a usable Cloud copy actually exists. Preserve every candidate copy before choosing between versions, and stop if you cannot identify which one contains the correct progress.
+
+The August 21 developer post states that its fixes could not restore progress already lost to the addressed crashes. A later patch, Steam Cloud support or a successful reinstall therefore must not be presented as a guaranteed recovery method.
+
+## What to Do If KOTAMON Is Not Saving
 
 1. Leave the last good save untouched.
 2. Use a separate manual slot only if it can be created without overwriting the good state. Otherwise stop and seek support.
@@ -104,12 +114,24 @@ For normal progression after the save is stable, use the [gameplay guide](/en/gu
 
 ## Save questions
 
-### Does this guide give an exact save path?
+### Where is the KOTAMON save file located?
 
-No. The location remains unverified, so no path or restore command is presented as fact.
+The exact local save location remains unverified in the official sources currently available, so this guide does not present a Windows path as fact.
 
-### Will Steam Cloud or a patch bring back my missing upgrades?
+### Does KOTAMON support Steam Cloud?
 
-Not necessarily. Cloud support, official bug fixes and the existence of a recoverable good save are separate questions. Preserve what remains and include the symptoms in a support report.
+Yes. The official Steam listing shows Steam Cloud support. That does not guarantee that an older or correct copy is recoverable.
+
+### How do I back up my KOTAMON save?
+
+First identify the complete game-specific file set from reliable evidence, close the game, and copy the files to a separate dated folder. Do not use a guessed path or overwrite the originals.
+
+### Why is KOTAMON not saving?
+
+The available evidence does not establish one cause for every symptom. Compare the documented demo migration, the August 21 fixes, any current crash and any Steam Cloud warning before treating them as the same problem.
+
+### Can I recover a lost KOTAMON save?
+
+Not necessarily. Cloud support, official bug fixes and the existence of a recoverable good copy are separate questions. Preserve what remains and include the symptoms in a support report.
 
 Return to the [Guides Hub](/en/guides) for other help and progression topics once the save state is stable.
