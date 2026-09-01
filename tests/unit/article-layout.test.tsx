@@ -39,6 +39,62 @@ it('renders one H1 and public trust fields', () => {
   expect(screen.getByText(/Updated August 25, 2026/)).toBeVisible();
 });
 
+it('renders the body, custom related guides, and sources in sequence', () => {
+  const { container } = render(
+    <ArticleLayout
+      entry={{
+        title: 'Gameplay Guide',
+        description: 'Core loop.',
+        slug: 'guides/gameplay',
+        category: 'Guides',
+        updatedAt: '2026-08-25',
+        sourceStatus: 'official',
+        draft: false,
+        locale: 'en',
+        relatedHeading: 'Explore More Hidden Content',
+        sources: [
+          {
+            label: 'Steam',
+            url: 'https://store.steampowered.com/app/4294490/KOTAMON/',
+            kind: 'official',
+          },
+        ],
+      }}
+      relatedEntries={[
+        {
+          title: 'Card Repair',
+          description: 'Repair worn cards.',
+          slug: 'guides/card-repair',
+          category: 'Guides',
+          updatedAt: '2026-08-25',
+          sourceStatus: 'official',
+          draft: false,
+          locale: 'en',
+          sources: [
+            {
+              label: 'Steam',
+              url: 'https://store.steampowered.com/app/4294490/KOTAMON/',
+              kind: 'official',
+            },
+          ],
+          Component: () => null,
+        },
+      ]}
+      sourcePage="/en/guides/gameplay"
+    >
+      <p>Body</p>
+    </ArticleLayout>,
+  );
+
+  const body = container.querySelector('.article-body');
+  const related = container.querySelector('.related-guides');
+  const sources = container.querySelector('.source-list');
+
+  expect(screen.getByRole('heading', { name: 'Explore More Hidden Content' })).toBeVisible();
+  expect(body?.compareDocumentPosition(related!)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+  expect(related?.compareDocumentPosition(sources!)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+});
+
 it('renders sources as safe external links', () => {
   render(
     <SourceList

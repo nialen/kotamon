@@ -73,7 +73,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         }}
         type="application/ld+json"
       />
-      <ArticleLayout entry={entry} relatedEntries={relatedEntries}>
+      <ArticleLayout
+        entry={entry}
+        relatedEntries={relatedEntries}
+        relatedHeading={entry.relatedHeading}
+        sourcePage={`/${entry.locale}/${entry.slug}`}
+      >
         <Content />
       </ArticleLayout>
     </>

@@ -18,6 +18,8 @@ type ArticleLayoutProps = {
   readonly children: ReactNode;
   readonly entry: ContentEntry;
   readonly relatedEntries?: readonly RegisteredEntry[];
+  readonly relatedHeading?: string;
+  readonly sourcePage?: string;
   readonly tableOfContents?: readonly TableOfContentsItem[];
 };
 
@@ -25,6 +27,8 @@ export function ArticleLayout({
   children,
   entry,
   relatedEntries = [],
+  relatedHeading = entry.relatedHeading,
+  sourcePage = `/${entry.locale}/${entry.slug}`,
   tableOfContents = [],
 }: ArticleLayoutProps) {
   return (
@@ -57,9 +61,14 @@ export function ArticleLayout({
         <div className="article-body">{children}</div>
       </div>
 
+      <RelatedGuides
+        entries={relatedEntries}
+        heading={relatedHeading}
+        sourcePage={sourcePage}
+      />
+
       <footer className="article-footer">
         <SourceList sources={entry.sources} />
-        <RelatedGuides entries={relatedEntries} />
       </footer>
     </article>
   );

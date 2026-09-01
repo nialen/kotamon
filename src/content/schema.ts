@@ -39,6 +39,7 @@ export const contentEntrySchema = z
     locale: z.literal('en'),
     priority: z.enum(['P0', 'P1', 'P2']).optional(),
     related: z.array(relativeSlugSchema).optional(),
+    relatedHeading: z.string().trim().min(1).max(80).optional(),
     sources: z
       .array(
         z.object({

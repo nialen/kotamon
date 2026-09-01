@@ -4,16 +4,26 @@ import type { RegisteredEntry } from '@/content/registry';
 
 type RelatedGuidesProps = {
   readonly entries: readonly RegisteredEntry[];
+  readonly heading?: string;
+  readonly sourcePage: string;
 };
 
-export function RelatedGuides({ entries }: RelatedGuidesProps) {
+export function RelatedGuides({
+  entries,
+  heading = 'Related guides',
+  sourcePage,
+}: RelatedGuidesProps) {
   if (entries.length === 0) {
     return null;
   }
 
   return (
-    <aside aria-labelledby="related-guides" className="related-guides">
-      <h2 id="related-guides">Related guides</h2>
+    <aside
+      aria-labelledby="related-guides"
+      className="related-guides"
+      data-source-page={sourcePage}
+    >
+      <h2 id="related-guides">{heading}</h2>
       <ul>
         {entries.map((entry) => (
           <li key={`${entry.locale}:${entry.slug}`}>

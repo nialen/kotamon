@@ -24,6 +24,22 @@ const canonicalSlugError =
   /Slug must use canonical lowercase slash-separated path segments/;
 
 describe('createRegistry', () => {
+  it('accepts an intent-specific related heading', () => {
+    const registry = createRegistry([
+      {
+        default: Component,
+        frontmatter: {
+          ...valid,
+          relatedHeading: 'Explore More Hidden Content',
+        },
+      },
+    ]);
+
+    expect(registry.allEntries[0]?.relatedHeading).toBe(
+      'Explore More Hidden Content',
+    );
+  });
+
   it('rejects duplicate locale and slug pairs', () => {
     expect(() =>
       createRegistry([
