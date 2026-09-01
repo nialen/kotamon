@@ -1,5 +1,6 @@
 import { ArrowRight } from '@phosphor-icons/react/dist/ssr';
 
+import { RelatedGuideLink } from '@/components/article/related-guide-link';
 import type { RegisteredEntry } from '@/content/registry';
 
 type RelatedGuidesProps = {
@@ -27,13 +28,17 @@ export function RelatedGuides({
       <ul>
         {entries.map((entry) => (
           <li key={`${entry.locale}:${entry.slug}`}>
-            <a href={`/${entry.locale}/${entry.slug}`}>
+            <RelatedGuideLink
+              href={`/${entry.locale}/${entry.slug}`}
+              linkText={entry.title}
+              sourcePage={sourcePage}
+            >
               <span>
                 <strong>{entry.title}</strong>
                 <small>{entry.description}</small>
               </span>
               <ArrowRight aria-hidden="true" size={20} weight="bold" />
-            </a>
+            </RelatedGuideLink>
           </li>
         ))}
       </ul>
