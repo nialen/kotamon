@@ -1,5 +1,17 @@
 # Operations Runbook
 
+## Current application release — 2026-09-02
+
+- Release commit: `c7d16fd5c61a0be01a51ffd27333afac285d3b92`
+- Verified Preview: `dpl_6n9tQhcpNCtxXUf4fFL9Z6HArT7x`
+- Verified application Production: `dpl_B5iWwPBcg8WLfrGxZwxsXosRAYQw`
+- Canonical URL: https://kotamon.com
+- Release state: `live-pending-data`
+- Release-regression rollback target: `dpl_BchDT8cGn8BMV7rBDkUZRXNQ1xir`
+- If an audit-only report commit produces a new equivalent deployment, its immediate application-equivalent rollback target is `dpl_B5iWwPBcg8WLfrGxZwxsXosRAYQw`.
+- Rollback procedure: use Vercel deployment rollback/promotion, verify aliases and all public routes, and leave DNS unchanged for an application-only rollback.
+- Follow-up at 2026-09-03 10:00 China Standard Time: inspect GA4 Realtime/reporting, Search Console sitemap/Page Indexing state, Vercel runtime errors, TLS, redirects, and the Secret Location ad placement.
+
 ## Current release state — 2026-09-01
 
 - Application commit: `38a657c348f7154ce459ea5c9c440c770c29c3ca`

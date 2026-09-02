@@ -1,5 +1,14 @@
 # Domain and DNS Report
 
+## Verification 2026-09-02
+
+- DNS changes in this release: none.
+- Application production deployment `dpl_B5iWwPBcg8WLfrGxZwxsXosRAYQw` received the existing `kotamon.com`, `www.kotamon.com`, and `kotamon.vercel.app` aliases.
+- `http://kotamon.com` returned HTTP 308 to `https://kotamon.com/`.
+- `https://www.kotamon.com` returned HTTP 308 to `https://kotamon.com/`.
+- `robots.txt` and `sitemap.xml` returned HTTP 200; all 21 sitemap URLs use `https://kotamon.com` and returned HTTP 200.
+- Existing Cloudflare nameservers, DNS records, proxy state, certificates, and Vercel domain settings were not changed.
+
 ## Verification 2026-09-01
 
 - DNS changes in this release: none.

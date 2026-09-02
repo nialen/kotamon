@@ -1,5 +1,23 @@
 # Production QA
 
+## Release 2026-09-02 — Secret Location ad placement
+
+- Status: live-pending-data
+- Release commit: `c7d16fd5c61a0be01a51ffd27333afac285d3b92`
+- Preview: `dpl_6n9tQhcpNCtxXUf4fFL9Z6HArT7x` (READY)
+- Application production: `dpl_B5iWwPBcg8WLfrGxZwxsXosRAYQw` (READY)
+- Canonical production URL: https://kotamon.com
+- Network checks: all 21 sitemap routes returned HTTP 200; HTTP apex and `www` returned HTTP 308 to the canonical HTTPS apex.
+- Discovery checks: `robots.txt` and `sitemap.xml` returned HTTP 200; the sitemap contained 21 canonical-host URLs.
+- Target-page position: the only Adsterra Native Banner is after `.article-header` (which includes the Direct answer) and before `.article-layout__content` on `/en/guides/secret-location`.
+- Desktop 1440 x 900 and mobile 390 x 844: successful-fill simulations rendered one 421 px banner with the Advertisement label, correct DOM order, no horizontal overflow, one script, one container ID, and no console/page errors.
+- Direct load and refresh retained the correct placement and uniqueness; SPA navigation from `/en/guides` preserved the same loaded provider creative with one script execution.
+- Mobile no-fill simulation retained one wrapper/container but collapsed the wrapper to 0 px, omitted the Advertisement label, and produced no console/page errors.
+- SEO checks: HTTP 200, canonical `https://kotamon.com/en/guides/secret-location`, exactly one H1, unchanged title, and full public-route SEO Playwright contract passed.
+- Analytics: Google tag loader and GA4 collect requests were observed on desktop and mobile.
+- Production runtime error query: no error logs found for the application deployment.
+- Pending: fresh account-visible GA4 reporting and Google indexing observations.
+
 ## Release 2026-09-01
 
 - Status: live-pending-data

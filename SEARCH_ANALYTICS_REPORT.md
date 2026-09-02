@@ -1,5 +1,17 @@
 # Search and Analytics Report
 
+## Release observation 2026-09-02
+
+- Sitemap gate passed on production: `robots.txt` and `sitemap.xml` returned HTTP 200, the sitemap contained exactly 21 canonical URLs, and all 21 returned HTTP 200.
+- No sitemap submission, indexing request, GSC property change, or GA4 setting change was made in this release.
+- Desktop and mobile production browser checks loaded the Google tag and observed requests to the GA4 collection endpoint.
+- Fresh account-visible GA4 reporting and Google indexing observations were not collected in this deployment run; release status remains `live-pending-data`.
+- Recheck target: 2026-09-03 10:00 China Standard Time using GA4 Realtime/reporting and Search Console sitemap/Page Indexing views.
+
+Sitemap gate: verify the canonical host, public HTTP availability/status, and crawlability of every intended public URL before submission.
+
+After the sitemap gate passes, record sitemap submission acknowledgement, Google's later fetch/success result, and URL Inspection/indexing observations as separate states; submission or an indexing request is not proof of indexing.
+
 ## Release observation 2026-09-01
 
 - Sitemap gate passed on production: `robots.txt` and `sitemap.xml` returned HTTP 200, the sitemap contained exactly 21 canonical URLs, and all 21 returned HTTP 200.
@@ -8,10 +20,6 @@
 - No Google Analytics or Search Console setting was changed.
 - Fresh account-visible GA4 reporting and Google indexing observations were not available in this run; release status remains `live-pending-data`.
 - Recheck target: 2026-09-02 10:00 China Standard Time.
-
-Sitemap gate: verify the canonical host, public HTTP availability/status, and crawlability of every intended public URL before submission.
-
-After the sitemap gate passes, record sitemap submission acknowledgement, Google's later fetch/success result, and URL Inspection/indexing observations as separate states; submission or an indexing request is not proof of indexing.
 
 - Google Search Console Domain Property: verified for `kotamon.com`
 - Sitemap submission acknowledgement: received on Aug 26, 2026 for `https://kotamon.com/sitemap.xml`

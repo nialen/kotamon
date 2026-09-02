@@ -1,5 +1,20 @@
 # Deployment Report
 
+## Release 2026-09-02 — Secret Location ad placement
+
+- Status: live-pending-data
+- Verified: 2026-09-02 08:35 China Standard Time
+- Repository: `https://github.com/nialen/kotamon.git`; public; branch `main`
+- Release commit pushed without force: `c7d16fd5c61a0be01a51ffd27333afac285d3b92`
+- Preview deployment: `dpl_6n9tQhcpNCtxXUf4fFL9Z6HArT7x`; https://kotamon-o6m6y4bwc-angelicachavira-1451s-projects.vercel.app; READY; created 2026-09-02 08:30 CST
+- Application production deployment: `dpl_B5iWwPBcg8WLfrGxZwxsXosRAYQw`; https://kotamon-gknd7jbmi-angelicachavira-1451s-projects.vercel.app; READY; created 2026-09-02 08:32 CST
+- Production aliases: `https://kotamon.com`, `https://www.kotamon.com`, `https://kotamon.vercel.app`
+- Local release gate: frozen install, typecheck, lint, 246 Vitest tests, content validation, production build, and 40 Playwright tests passed; 28 outputs generated.
+- Preview gate: homepage, Secret Location, `robots.txt`, and `sitemap.xml` returned HTTP 200; no Preview error logs were found.
+- Production gate: all 21 sitemap routes returned HTTP 200; target-page desktop/mobile fill, SPA entry, refresh, no-fill collapse, unique script/container, canonical/H1, overflow, analytics signal, and browser-error checks passed.
+- DNS mutations: none.
+- Release-regression rollback target: `dpl_BchDT8cGn8BMV7rBDkUZRXNQ1xir`; keep DNS unchanged.
+
 ## Release 2026-09-01
 
 - Status: live-pending-data
