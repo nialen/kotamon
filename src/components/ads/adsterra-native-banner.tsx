@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import Script from 'next/script';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 const MONETIZED_ROUTES = new Set([
   '/en',
@@ -29,6 +29,8 @@ const MONETIZED_ROUTES = new Set([
 ]);
 
 const NON_CREATIVE_ELEMENTS = 'link, meta, script, style, template';
+const SECRET_LOCATION_PATH = '/en/guides/secret-location';
+const SECRET_LOCATION_SLOT = '[data-secret-location-ad-slot]';
 
 function hasRenderableCreative(container: HTMLElement) {
   return [...container.querySelectorAll('*')].some((element) => {
@@ -57,20 +59,58 @@ function hasRenderableCreative(container: HTMLElement) {
 export function AdsterraNativeBanner() {
   const pathname = usePathname();
   const isMonetized = MONETIZED_ROUTES.has(pathname);
+  const adRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const creativeRenderedRef = useRef(false);
   const [hasCreative, setHasCreative] = useState(false);
   const isVisible = isMonetized && hasCreative;
+
+  useLayoutEffect(() => {
+    const ad = adRef.current;
+    const originalParent = ad?.parentNode;
+    const originalNextSibling = ad?.nextSibling ?? null;
+
+    if (!ad || !originalParent || pathname !== SECRET_LOCATION_PATH) {
+      return;
+    }
+
+    const slot = document.querySelector(SECRET_LOCATION_SLOT);
+    if (!slot) {
+      return;
+    }
+
+    slot.append(ad);
+
+    return () => {
+      if (!originalParent.isConnected) {
+        return;
+      }
+
+      originalParent.insertBefore(
+        ad,
+        originalNextSibling?.parentNode === originalParent
+          ? originalNextSibling
+          : null,
+      );
+    };
+  }, [pathname]);
 
   useEffect(() => {
     const container = containerRef.current;
 
     if (!container || !isMonetized) {
-      setHasCreative(false);
       return;
     }
 
-    const updateCreativeState = () =>
-      setHasCreative(hasRenderableCreative(container));
+    const updateCreativeState = () => {
+      if (
+        !creativeRenderedRef.current &&
+        hasRenderableCreative(container)
+      ) {
+        creativeRenderedRef.current = true;
+        setHasCreative(true);
+      }
+    };
 
     updateCreativeState();
 
@@ -101,6 +141,7 @@ export function AdsterraNativeBanner() {
       data-ad-state={isVisible ? 'filled' : 'empty'}
       data-adsterra-native
       hidden={!isMonetized}
+      ref={adRef}
     >
       <div className="native-ad__frame">
         {isVisible ? <p className="native-ad__label">Advertisement</p> : null}

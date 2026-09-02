@@ -46,6 +46,10 @@ export function ArticleLayout({
         </div>
       </header>
 
+      {entry.slug === 'guides/secret-location' ? (
+        <div data-secret-location-ad-slot />
+      ) : null}
+
       <div
         className={
           tableOfContents.length > 0

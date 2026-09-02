@@ -4,6 +4,8 @@ import { act, cleanup, render, waitFor } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
 
 import LocaleLayout from '@/app/[locale]/layout';
+import { ArticleLayout } from '@/components/article/article-layout';
+import { getEntry } from '@/content/registry';
 import { PUBLIC_ROUTES } from '@/content/routes';
 
 const routeState = vi.hoisted(() => ({ pathname: '/en' }));
@@ -73,6 +75,33 @@ it('places one native ad after main content and immediately before the footer', 
   expect(ad?.nextElementSibling).toBe(footer);
 });
 
+it('provides an ad slot only after the secret-location quick-answer header', () => {
+  const secretEntry = getEntry('en', 'guides/secret-location');
+  const gameplayEntry = getEntry('en', 'guides/gameplay');
+  expect(secretEntry).toBeDefined();
+  expect(gameplayEntry).toBeDefined();
+
+  const secret = render(
+    <ArticleLayout entry={secretEntry!}>
+      <h2>How to reach the hidden area</h2>
+    </ArticleLayout>,
+  );
+  const secretHeader = secret.container.querySelector('.article-header');
+  const slot = secret.container.querySelector('[data-secret-location-ad-slot]');
+  expect(secretHeader?.nextElementSibling).toBe(slot);
+  expect(slot?.nextElementSibling).toHaveClass('article-layout__content');
+  secret.unmount();
+
+  const gameplay = render(
+    <ArticleLayout entry={gameplayEntry!}>
+      <h2>Gameplay details</h2>
+    </ArticleLayout>,
+  );
+  expect(
+    gameplay.container.querySelector('[data-secret-location-ad-slot]'),
+  ).not.toBeInTheDocument();
+});
+
 it('keeps the ad region hidden until the provider injects a creative', async () => {
   const layout = await LocaleLayout({
     children: <section>Page content</section>,
@@ -128,7 +157,7 @@ it('keeps loader and zero-size provider nodes in the no-fill state', async () =>
   expect(container.querySelector('.native-ad__label')).not.toBeInTheDocument();
 });
 
-it('hides the complete ad region again when the provider creative is removed', async () => {
+it('keeps the ad visible after a real creative has rendered once', async () => {
   const layout = await LocaleLayout({
     children: <section>Page content</section>,
     params: Promise.resolve({ locale: 'en' }),
@@ -150,10 +179,75 @@ it('hides the complete ad region again when the provider creative is removed', a
 
   providerContainer!.replaceChildren();
   await waitFor(() => {
-    expect(ad).toHaveAttribute('data-ad-state', 'empty');
+    expect(ad).toHaveAttribute('data-ad-state', 'filled');
   });
-  expect(ad).toHaveAttribute('aria-hidden', 'true');
-  expect(container.querySelector('.native-ad__label')).not.toBeInTheDocument();
+  expect(ad).toHaveAttribute('aria-hidden', 'false');
+  expect(container.querySelector('.native-ad__label')).toHaveTextContent(
+    'Advertisement',
+  );
+});
+
+it('moves the single ad after the secret-location quick answer', async () => {
+  routeState.pathname = '/en/guides/secret-location';
+  const layout = await LocaleLayout({
+    children: (
+      <article>
+        <aside>Quick answer</aside>
+        <div data-secret-location-ad-slot />
+        <h2>How to reach the hidden area</h2>
+      </article>
+    ),
+    params: Promise.resolve({ locale: 'en' }),
+  });
+  const { container } = render(layout);
+  const ad = container.querySelector('[data-adsterra-native]');
+  const slot = container.querySelector('[data-secret-location-ad-slot]');
+
+  await waitFor(() => expect(slot?.firstElementChild).toBe(ad));
+  expect(container.querySelectorAll('[data-adsterra-native]')).toHaveLength(1);
+  expect(
+    container.querySelectorAll(
+      '#container-10de3692fca1aa56ca3ff0485ea3e9e6',
+    ),
+  ).toHaveLength(1);
+  expect(scriptState.calls).toHaveLength(1);
+  expect(ad?.closest('article')).toBe(container.querySelector('article'));
+  expect(slot?.nextElementSibling?.tagName).toBe('H2');
+});
+
+it('preserves the provider container while SPA navigation moves the ad into the secret article', async () => {
+  const initialLayout = await LocaleLayout({
+    children: <section>Guides</section>,
+    params: Promise.resolve({ locale: 'en' }),
+  });
+  const { container, rerender } = render(initialLayout);
+  const originalAd = container.querySelector('[data-adsterra-native]');
+  const originalProviderContainer = container.querySelector(
+    '#container-10de3692fca1aa56ca3ff0485ea3e9e6',
+  );
+
+  routeState.pathname = '/en/guides/secret-location';
+  rerender(
+    await LocaleLayout({
+      children: (
+        <article>
+          <aside>Quick answer</aside>
+          <div data-secret-location-ad-slot />
+          <h2>How to reach the hidden area</h2>
+        </article>
+      ),
+      params: Promise.resolve({ locale: 'en' }),
+    }),
+  );
+
+  const slot = container.querySelector('[data-secret-location-ad-slot]');
+  await waitFor(() => expect(slot?.firstElementChild).toBe(originalAd));
+  expect(
+    container.querySelector(
+      '#container-10de3692fca1aa56ca3ff0485ea3e9e6',
+    ),
+  ).toBe(originalProviderContainer);
+  expect(container.querySelectorAll('[data-adsterra-native]')).toHaveLength(1);
 });
 
 it('omits the ad from routes that are not explicitly approved for monetization', async () => {
