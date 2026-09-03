@@ -97,7 +97,11 @@ describe('GSC-targeted page intent coverage', () => {
     const headings = [...container.querySelectorAll('h2')].map((heading) => heading.textContent);
     const copy = container.textContent ?? '';
 
-    expect(headings[0]).toBe('Where is the KOTAMON secret location?');
+    expect(headings[0]).toBe('Where is the KOTAMON easter egg?');
+    expect(screen.getByRole('heading', { name: 'How to get inside the house' })).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'How to reach the upstairs secret area' })).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'Where is the KOTAMON secret room?' })).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'Are there multiple KOTAMON easter eggs?' })).toBeVisible();
     expect(copy).toContain(
       'This guide currently covers the confirmed hidden surprise and the related community-reported secret location.',
     );
@@ -108,8 +112,23 @@ describe('GSC-targeted page intent coverage', () => {
       '/en/collectibles/figurines',
       '/en/collectibles/audiotapes',
       '/en/achievements',
+      '/en/updates',
     ]) {
       expect(container.querySelector(`a[href="${href}"]`)).not.toBeNull();
     }
+  });
+
+  it('uses direct answers for artist, patch, and figurine intent without new routes', () => {
+    const artists = renderContent('game/artists').container;
+    const updates = renderContent('updates').container;
+    const figurines = renderContent('collectibles/figurines').container;
+
+    expect(screen.getByRole('heading', { name: 'Who is the KOTAMON artist?' })).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'Did the latest KOTAMON patch change cards or collectibles?' })).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'How many figurines are in KOTAMON?' })).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'Where are all KOTAMON figurines?' })).toBeVisible();
+    expect(artists.textContent).toContain('KotaMota Games is the verified developer.');
+    expect(updates.textContent).toContain('increased the chances of finding cereal boxes, figurines and cosplay cases');
+    expect(figurines.textContent).toContain('Steam publishes milestones at 1, 5, 9, and 12 figurines.');
   });
 });
